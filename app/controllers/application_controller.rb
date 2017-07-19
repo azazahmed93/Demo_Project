@@ -9,12 +9,4 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:avatar, :admin, :username, :email, :password, :password_confirmation, :remember_me) }
     devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:avatar, :admin, :username, :email, :password, :remember_me) }
   end
-  
-  def after_sign_in_path_for(resource)
-  	if current_user.admin==true
-  		new_movie_path
-  	else
-  		movies_path
-  	end
-  end
 end

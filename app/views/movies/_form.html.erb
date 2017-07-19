@@ -4,42 +4,50 @@
       <h2><%= pluralize(@movie.errors.count, "error") %> prohibited this movie from being saved:</h2>
 
       <ul>
-      <% @movie.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @movie.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
+  <div class="field" >
+    <%= f.label :title%><br>
+    <%= f.text_field :title%>
   </div>
+
   <div class="field">
     <%= f.label :plot %><br>
    <%= f.cktext_area :plot, :width => 100 %>
   </div>
+
   <div class="field">
     <%= f.label :year %><br>
     <%= f.text_field :year %>
   </div>
+
   <div class="field">
     <%= f.label :genre %><br>
     <%= f.text_field :genre %>
   </div>
+
   <div class="field">
     <%= f.label :time %><br>
     <%= f.text_field :time %>
   </div>
+
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </div>
+
   <div class="field">
     <%= f.label :rating %><br>
     <%= f.text_field :rating %>
   </div>
+
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Create Movie", class: 'btn btn-primary' %>
   </div>
-<% end %>
+
+<%end %>
