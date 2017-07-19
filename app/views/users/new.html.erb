@@ -1,0 +1,8 @@
+<h1>Hi! <%=current_user.username%></h1>
+<%= form_for current_user, url: users_profile_path, html: { multipart: true } do |form| %>
+<%= form.label :photo%>
+<%= form.file_field :avatar %>
+<div class="actions">
+	</br><%= form.submit %>
+</div>
+<% end %>
