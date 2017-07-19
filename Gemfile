@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'ckeditor'
 gem 'bootstrap-sass'
 #gem 'sass-rails'
 gem 'paperclip'
