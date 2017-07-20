@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170719154505) do
+ActiveRecord::Schema.define(version: 20170720070633) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -67,10 +67,14 @@ ActiveRecord::Schema.define(version: 20170719154505) do
   end
 
   create_table "posters", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.integer  "movie_id",   limit: 4
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "title",             limit: 255
+    t.integer  "movie_id",          limit: 4
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "file_file_name",    limit: 255
+    t.string   "file_content_type", limit: 255
+    t.integer  "file_file_size",    limit: 4
+    t.datetime "file_updated_at"
   end
 
   add_index "posters", ["movie_id"], name: "index_posters_on_movie_id", using: :btree

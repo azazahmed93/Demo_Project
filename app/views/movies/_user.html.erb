@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<div id="font">
 <h1>Movies</h1>
 <table>
   <thead>
@@ -19,15 +19,18 @@
     <% @movies.each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
-        <td><%= movie.plot %></td><!-- 
+        <td>|<%= movie.plot %></td><!-- 
         <td><%= movie.year %></td>
         <td><%= movie.genre %></td>
         <td><%= movie.time %></td>
         <td><%= movie.url %></td>
         <td><%= movie.rating %></td> -->
+        <td><%= link_to 'Show', movie %></td>
+
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
+</div>

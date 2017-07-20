@@ -1,8 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<div id="font">
 <p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
+ <h1><%= @movie.title %></h1>
 </p>
 
 <p>
@@ -11,8 +10,10 @@
 </p>
 
 <p>
-  <strong>Trailer:</strong>
+  <strong>Official Trailer:</strong>
+  <div>
   <iframe width="560" height="349" src="<%= "http://www.youtube.com/embed/"+@movie.code%>"></iframe> 
+  </div>
 </p>
 
 <p>
@@ -34,6 +35,6 @@
   <strong>Rating:</strong>
   <%= @movie.rating %>
 </p>
+</div>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
