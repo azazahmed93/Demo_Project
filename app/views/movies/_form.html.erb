@@ -46,15 +46,15 @@
     <%= f.text_field :rating %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Create Movie", class: 'btn btn-primary' %>
-  </div>
-
   <%=f.fields_for :posters do |p| %>
     <%= p.text_field :title %>
     <%= p.label :image %>
     <%= p.file_field :file %>
     <%= p.link_to_remove "Remove Poster" %>
   <%end %>
+  </br>
   <p><%= f.link_to_add "Add Poster", :posters %></p>
+  <div class="actions">
+    <%= f.submit "Create Movie", class: 'btn btn-primary' %>
+  </div>
 <%end%>

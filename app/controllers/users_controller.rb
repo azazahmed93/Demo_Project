@@ -4,8 +4,12 @@ class UsersController < ApplicationController
     @user= User.new
   end
 
+  def all
+    @users= User.all
+  end
+
   def show
-    @user= current_user
+    
   end
   def profile
     

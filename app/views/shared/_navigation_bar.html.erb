@@ -14,17 +14,17 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%=root_path %>">Home <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="<%=root_path %>">Movies<span class="sr-only">(current)</span></a></li>
        
         <% if user_signed_in? %>
-        <%= nav_link 'Logout', destroy_user_session_path, :delete %>
-        <%= nav_link 'Edit Profile', edit_user_registration_path %>        
+          <%= nav_link 'Users', users_all_path %>        
+          <%= nav_link 'Edit Profile', edit_user_registration_path %> 
         <% else %>
-        <%= nav_link 'Login', new_user_session_path %>
-        <%= nav_link 'Register', new_user_registration_path %>
+          <%= nav_link 'Login', new_user_session_path %>
+          <%= nav_link 'Register', new_user_registration_path %>
         <% end %>
 
-        <li class="dropdown">
+     <!--    <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">Action</a></li>
@@ -36,7 +36,7 @@
             <li><a href="#">One more separated link</a></li>
           </ul>
         </li>
-       </ul>
+       </ul> -->
 
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -46,7 +46,8 @@
       </form>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+          <%= nav_link 'Logout', destroy_user_session_path, :delete %>
+        <!-- <li></li> -->
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
