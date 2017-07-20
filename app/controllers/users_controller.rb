@@ -8,10 +8,13 @@ class UsersController < ApplicationController
     @users= User.all
   end
 
-  def show
+  def profile
     
   end
-  def profile
+  def update
+
+    @user = User.find(params[:id])
+    @user.update_attribute(:avatar, params[:user][:avatar])
     
   end
   def user_params

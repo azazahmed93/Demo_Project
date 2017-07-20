@@ -1,4 +1,5 @@
 <%= image_tag current_user.avatar("thumb")%>
+<p><%= link_to "Edit Profile photo", users_profile_path%></p>
 <%if current_user.admin%>
 <%= render "admin"%>
 <%else%>
