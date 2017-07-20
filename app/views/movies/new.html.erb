@@ -1,14 +1,4 @@
 <%= link_to '<-All Movies', movies_path %>
 
 <h1>Add Movie</h1>
-
 <%= render 'form' %>
-
-<%= form_for(@movie, html: { multipart: true }) do |f| %>
-	
-	<div class="field">
-		<%= f.label :Poster %>
-		<%= f.file_field :image %>
-	</div>
-
-<%end%>

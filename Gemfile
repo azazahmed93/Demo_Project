@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "nested_form"
 gem 'ckeditor'
 gem 'bootstrap-sass'
 #gem 'sass-rails'

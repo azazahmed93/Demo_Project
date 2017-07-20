@@ -1,18 +1,24 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Title:</strong>
-  <%= @movie.title %>
+  <%@movie.posters.each do |p|%>
+    <%=image_tag p.file("medium")%>
+  <%end%>
+  <h4><%= @movie.title %></h4>
 </p>
+<% @movie.actors.each do |a| %>
+  <%=a.name%>
+<%end%>
 
 <p>
   <strong>Plot:</strong>
-  <%= @movie.plot %>
+  <%= raw @movie.plot %>
 </p>
 
 <p>
-  <strong>Trailer:</strong>
-  <iframe width="560" height="349" src="<%= "http://www.youtube.com/embed/"+@movie.code%>"></iframe> 
+  <strong>Official Trailer:</strong>
+  <div>
+  <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe> 
+  </div>
 </p>
 
 <p>
@@ -35,5 +41,4 @@
   <%= @movie.rating %>
 </p>
 
-<%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>
