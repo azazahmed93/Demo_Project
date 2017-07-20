@@ -54,6 +54,15 @@
   <%end %>
   </br>
   <p><%= f.link_to_add "Add Poster", :posters %></p>
+ 
+  <%=f.fields_for :actors do |a| %>
+    <%= a.text_field :name %>
+    <%= a.link_to_remove "Remove Actor" %>
+  <%end %>
+  </br>
+  <p><%= f.link_to_add "Add Actor", :actors %></p>
+  </br>   
+
   <div class="actions">
     <%= f.submit "Create Movie", class: 'btn btn-primary' %>
   </div>

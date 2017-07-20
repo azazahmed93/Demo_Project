@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 <p>
   <%@movie.posters.each do |p|%>
-  <%=image_tag p.file%>
+    <%=image_tag p.file("medium")%>
   <%end%>
- <h1><%= @movie.title %></h1>
+  <h4><%= @movie.title %></h4>
 </p>
+<% @movie.actors.each do |a| %>
+  <%=a.name%>
+<%end%>
 
 <p>
   <strong>Plot:</strong>
-  <%= @movie.plot %>
+  <%= raw @movie.plot %>
 </p>
 
 <p>
