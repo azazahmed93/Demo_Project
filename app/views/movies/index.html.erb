@@ -1,6 +1,6 @@
 <%= image_tag current_user.avatar("thumb")%>
 <%if current_user.admin%>
-<%= render "admin"%>
+	<%= render "admin"%>
 <%else%>
-<%=render "user"%>
+	<%=render "user"%>
 <%end%>
