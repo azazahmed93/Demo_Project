@@ -1,6 +1,16 @@
 <%= image_tag current_user.avatar("thumb")%>
-<%if current_user.admin%>
-	<%= render "admin"%>
-<%else%>
-	<%=render "user"%>
+
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+      </div>
+    </div>
+  <% end %>
+</div>
+<br>
+<%if can? :manage , @movie%>
+	<%= link_to 'Add Movie', new_movie_path, class: "btn btn-primary"%>
 <%end%>

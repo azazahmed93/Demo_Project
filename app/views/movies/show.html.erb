@@ -1,10 +1,22 @@
 <p id="notice"><%= notice %></p>
 <p>
-  <%@movie.posters.each do |p|%>
-    <%=image_tag p.file("medium")%>
-  <%end%>
+<div class="col-sm-6 col-md-3">
+<%@movie.posters.each do |p|%>
+    <div class="thumbnail">
+        <%=image_tag p.file("medium")%>
+    </div>
+  
+<%end%>
   <h4><%= @movie.title %></h4>
 </p>
+<p>
+  <strong>Official Trailer:</strong>
+  <div style="margin-left: 50%">
+  <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe> 
+  </div>
+</p>
+</div>
+<b>Cast: </b> 
 <% @movie.actors.each do |a| %>
   <%=a.name%>
 <%end%>
@@ -13,14 +25,6 @@
   <strong>Plot:</strong>
   <%= raw @movie.plot %>
 </p>
-
-<p>
-  <strong>Official Trailer:</strong>
-  <div>
-  <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe> 
-  </div>
-</p>
-
 <p>
   <strong>Year:</strong>
   <%= @movie.year %>
@@ -44,3 +48,50 @@
 <%= link_to 'Back', movies_path, class: "btn btn-primary" %>
 <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
 <%end%>
+
+
+<!--  -->
+<!-- <div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%@movie.posters.each do |p|%>
+          <div class="thumbnail">
+            <%=image_tag p.file("medium")%>
+          </div>
+          <%end%>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Title:</strong></td>
+                <td><%= @movie.title %></td>
+              </tr>
+              <tr>
+                <td><strong>Plot:</strong></td>
+                <td><%= raw @movie.plot %></td>
+              </tr>
+              <tr>
+                <td><strong>Length:</strong></td>
+                <td><%= @movie.time %></td>
+              </tr>
+              <tr>
+                <td><strong>Rating:</strong></td>
+                <td><%= @movie.rating %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p>
+  <strong>Official Trailer:</strong>
+  <div style="margin-left: 20%">
+  <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe> 
+  </div>
+</p>
+</div>
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %> -->
