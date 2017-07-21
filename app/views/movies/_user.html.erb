@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <div id="font">
-<h1>Favorite Movies</h1>
+<h3>Favorite Movies</h3>
 <table>
   <thead>
     <tr>
@@ -18,6 +18,7 @@
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
+        <td><%= image_tag movie.posters.first.file("medium")%></td>
         <td><%= movie.title %></td>
         <!--<td>|<%= movie.plot %></td> 
         <td><%= movie.year %></td>
