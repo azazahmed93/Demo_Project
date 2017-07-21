@@ -12,9 +12,6 @@ class UsersController < ApplicationController
     
   end
   def update
-
-    @user = User.find(params[:id])
-    @user.update_attribute(:avatar, params[:user][:avatar])
     
   end
   def user_params

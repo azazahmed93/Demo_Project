@@ -4,6 +4,8 @@
   <%= devise_error_messages! %>
   <div>
       <%=image_tag current_user.avatar("thumb")%>
+      <%= f.file_field :avatar %>
+
   </div>
   <div>
     <%= f.label :username %><br />

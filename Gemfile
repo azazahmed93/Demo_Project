@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem "cancan"
 gem "nested_form"
 gem 'ckeditor'
 gem 'bootstrap-sass'
