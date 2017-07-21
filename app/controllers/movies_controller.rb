@@ -1,6 +1,7 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_user!
+  before_filter :if_admin, only: [:new , :edit ,:create ,:destroy, :update]
   # GET /movies
   # GET /movies.json
   def index
@@ -66,6 +67,9 @@ class MoviesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_movie
       @movie = Movie.find(params[:id])
+    end
+    def if_admin
+      authorize! :manage, Movie
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
