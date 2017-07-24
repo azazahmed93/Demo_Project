@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   									:default_url => "/images/2.png"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable  
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 end
