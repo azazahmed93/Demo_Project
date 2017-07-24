@@ -41,13 +41,7 @@
     <%= f.text_field :url %>
   </div>
 
-  <div class="field">
-    <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
-  </div>
-
   <%=f.fields_for :posters do |p| %>
-    <%= p.text_field :title %>
     <%= p.label :image %>
     <%= p.file_field :file %>
     <%= p.link_to_remove "Remove Poster" %>
