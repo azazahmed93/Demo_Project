@@ -8,13 +8,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">PopcornTime</a>
+      <a class="navbar-brand" href="<%= root_path %>">PopcornTime</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%=root_path %>">Movies<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="<%= root_path %>">Movies<span class="sr-only">(current)</span></a></li>
          <% if user_signed_in? %>
             <% if current_user.admin? %>
               <%= nav_link 'Users', users_all_path %>
