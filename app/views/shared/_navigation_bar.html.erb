@@ -15,31 +15,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="<%= root_path %>">Movies<span class="sr-only">(current)</span></a></li>
-         <% if user_signed_in? %>
-            <% if current_user.admin? %>
-              <%= nav_link 'Users', users_all_path %>
-              <%= nav_link 'Edit Profile', edit_user_registration_path %> 
-            <%else%>        
-              <%= nav_link 'Edit Profile', edit_user_registration_path %> 
-            <% end %>
-          <% else %>
-            <%= nav_link 'Login', new_user_session_path %>
-            <%= nav_link 'Register', new_user_registration_path %>
-          <% end %>
-
-     <!--    <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-       </ul> -->
+        <%= nav_link 'Users', users_all_path %>
+        <% if !user_signed_in? %>
+          <%= nav_link 'Login', new_user_session_path %>
+          <%= nav_link 'Register', new_user_registration_path %>
+        <% end %>
+      </ul>
 
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -49,19 +30,24 @@
       </form>
 
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
-          <%= nav_link 'Logout', destroy_user_session_path, :delete %>
-        <% end %>        
+        <% if current_user %>
+          <%= image_tag( current_user.avatar("small") , class: "foundation_or_bootstrap_class") %>
+        <% end %>
+
+      <% if user_signed_in? %>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><%= current_user.email %> <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li>
+                <%= nav_link 'Edit Profile', edit_user_registration_path %>
+            </li>
             <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
+            <li>
+                <%= nav_link 'Logout', destroy_user_session_path, :delete %>
+            </li>
           </ul>
         </li>
+      <% end %>
       </ul>
     </div>
   </div>

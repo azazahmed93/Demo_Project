@@ -1,14 +1,49 @@
 <p id="notice"><%= notice %></p>
-<div class="row">
-  <% @movies.each do |movie| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link_to "Latest Movies" %></h3>
+  </div>
+  <div class="panel-body">
+    <% @movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
       </div>
     </div>
   <% end %>
+  </div>
 </div>
-<br>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link_to "Featured Movies" %></h3>
+  </div>
+  <div class="panel-body">
+    <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= link_to "Top Movies" %></h3>
+  </div>
+  <div class="panel-body">
+    <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
 <%if can? :manage , @movie%>
 	<%= link_to 'Add Movie', new_movie_path, class: "btn btn-primary"%>
 <%end%>

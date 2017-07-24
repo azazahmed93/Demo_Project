@@ -1,9 +1,9 @@
 <%if can? :manage ,@user %>
-	<%@users.each do |u|%>
-		<%= image_tag u.avatar("thumb")%>
-		<p>
-  		Email:<%=u.email%></br>
-		<p>
-		</br>	
-	<%end%>
+  <%@users.each do |u|%>
+    <%= image_tag u.avatar("thumb")%>
+    <p>
+      Email:<%= u.email %></br>
+    <p>
+    </br>
+  <%end%>
 <%end%>
