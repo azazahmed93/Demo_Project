@@ -9,6 +9,4 @@
   <% end %>
 </div>
 <br>
-<%if can? :manage , @movie%>
-	<%= link_to 'Add Movie', new_movie_path, class: "btn btn-primary"%>
-<%end%>
+<%= link_to 'Add Movie', new_movie_path, class: "btn btn-primary"%>

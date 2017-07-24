@@ -15,18 +15,17 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="<%=root_path %>">Movies<span class="sr-only">(current)</span></a></li>
-       
-        <% if user_signed_in? %>
-          <% if current_user.admin? %>
-            <%= nav_link 'Users', users_all_path %>
-            <%= nav_link 'Edit Profile', edit_user_registration_path %> 
-          <%else%>        
-            <%= nav_link 'Edit Profile', edit_user_registration_path %> 
-          <%end%>
-        <%else %>
-          <%= nav_link 'Login', new_user_session_path %>
-          <%= nav_link 'Register', new_user_registration_path %>
-        <%end %>
+         <% if user_signed_in? %>
+            <% if current_user.admin? %>
+              <%= nav_link 'Users', users_all_path %>
+              <%= nav_link 'Edit Profile', edit_user_registration_path %> 
+            <%else%>        
+              <%= nav_link 'Edit Profile', edit_user_registration_path %> 
+            <% end %>
+          <% else %>
+            <%= nav_link 'Login', new_user_session_path %>
+            <%= nav_link 'Register', new_user_registration_path %>
+          <% end %>
 
      <!--    <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -46,12 +45,13 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="Search">
         </div>
-       <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
       <ul class="nav navbar-nav navbar-right">
+        <% if user_signed_in? %>
           <%= nav_link 'Logout', destroy_user_session_path, :delete %>
-        <!-- <li></li> -->
+        <% end %>        
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
@@ -63,6 +63,6 @@
           </ul>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+    </div>
+  </div>
 </nav>
