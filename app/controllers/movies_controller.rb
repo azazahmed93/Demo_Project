@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   before_filter :if_admin, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    @movies = Movie.all
+    @movies = Movie.order(year: :desc).limit(4)
   end
 
   def show
@@ -48,7 +48,7 @@ class MoviesController < ApplicationController
   end
 
   private
-  
+
     def set_movie
       @movie = Movie.find(params[:id])
     end

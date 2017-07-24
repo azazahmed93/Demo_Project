@@ -5,18 +5,19 @@
     <div class="thumbnail">
         <%=image_tag p.file("medium")%>
     </div>
-  
+
 <%end%>
   <h4><%= @movie.title %></h4>
 </p>
 <p>
   <strong>Official Trailer:</strong>
   <div style="margin-left: 50%">
-    <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe> 
+    <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe>
   </div>
 </p>
+
 </div>
-<b>Cast: </b> 
+<b>Cast: </b>
 <% @movie.actors.each do |a| %>
   <%=a.name%>
 <%end%>
