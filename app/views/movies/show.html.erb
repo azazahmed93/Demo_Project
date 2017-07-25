@@ -42,7 +42,7 @@
 </p>
 
 <p>
-  <%= rating_for @movie , 'rating' %>
+  <%= rating_for @movie, 'rating' %>
 </p>
 <% if can? :manage , @movie %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>

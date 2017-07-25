@@ -15,10 +15,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><%= nav_link 'Movies',  movies_path %></li>
-        <%= nav_link 'Users', users_all_path %>
         <% if !user_signed_in? %>
           <%= nav_link 'Login', new_user_session_path %>
           <%= nav_link 'Register', new_user_registration_path %>
+        <% else %>
+          <% if current_user.admin? %>
+            <%= nav_link 'Users', users_all_path %>
+          <% end %>
         <% end %>
       </ul>
 
