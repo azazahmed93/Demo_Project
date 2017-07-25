@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def all
-    @users = User.all
+    @users = User.all.page params[:page]
   end
 
   private

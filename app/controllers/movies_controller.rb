@@ -1,16 +1,16 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
-  before_filter :if_admin, only: [:new , :edit ,:create ,:destroy, :update]
+  before_filter :user_is_admin, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
     if params[:type] == "latest"
-      @movies = Movie.order(year: :desc)
+      @movies = Movie.order(year: :desc).page params[:page]
     elsif params[:type] == "featured"
-      @movies = Movie.where(featured: true)
+      @movies = Movie.where(featured: true).page params[:page]
     elsif params[:type] == "top"
-      @movies = Movie.order(rating: :desc)
+      @movies = Movie.order(rating: :desc).page params[:page]
     else
-      @movies = Movie.order(created_at: :desc)
+      @movies = Movie.order(created_at: :desc).page params[:page]
     end
   end
 
@@ -69,7 +69,7 @@ class MoviesController < ApplicationController
       @movie = Movie.find(params[:id])
     end
 
-    def if_admin
+    def user_is_admin
       authorize! :manage, Movie
     end
 
