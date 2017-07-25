@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'ratyrate'
+gem 'ratyrate', :github => 'wazery/ratyrate'
 gem 'mailcatcher'
 gem "cancan"
 gem "nested_form"
