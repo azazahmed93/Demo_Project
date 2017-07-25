@@ -3,7 +3,20 @@ class MoviesController < ApplicationController
   before_filter :if_admin, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-      @movies = Movie.order(year: :desc).limit(4)
+    if params[:type] == "latest"
+      @movies = Movie.order(year: :desc)
+    elsif params[:type] == "featured"
+      @movies = Movie.where(featured: true)
+    elsif params[:type] == "top"
+      @movies = Movie.order(rating: :desc)
+    end
+  end
+
+  def home
+    @latest_movies = Movie.order(year: :desc).limit(4)
+    @featured_movies = Movie.where(featured: true).limit(4)
+    @top_movies = Movie.order(rating: :desc).limit(4)
+
   end
 
   def show
@@ -58,7 +71,7 @@ class MoviesController < ApplicationController
     end
 
     def movie_params
-      params.require(:movie).permit(:title, :plot, :year, :genre, :time, :url, :rating, posters_attributes:
+      params.require(:movie).permit(:title, :plot, :year, :genre, :time, :url, :rating, :featured, posters_attributes:
                                    [:id, :title, :file , :_destroy], actors_attributes: [:id, :name, :_destroy])
     end
 end

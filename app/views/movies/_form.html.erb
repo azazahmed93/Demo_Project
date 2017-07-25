@@ -36,13 +36,15 @@
     <%= f.text_field :time %>
   </div>
 
-  <div>
-    </br><%= f.check_box :featured %>
-    <%= f.label :featured %><br>
-  </div>
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
+  </div>
+
+  <div>
+    <%= f.label :Feature %>
+    <%= f.check_box :featured %>
+    </br>
   </div>
 
   <%= f.fields_for :posters do |p| %>
@@ -62,6 +64,6 @@
   </br>
 
   <div class="actions">
-    <%= f.submit "Save", class: 'btn btn-primary' %>
+    <%= f.submit "Create Movie", class: 'btn btn-primary' %>
   </div>
 <%end%>

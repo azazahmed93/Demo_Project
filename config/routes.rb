@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :movies
   get 'users/all'
-  root 'movies#index'
+  get 'movies/home'
+  root 'movies#home'
 end
