@@ -44,17 +44,17 @@
 <p>
   <%= rating_for @movie, 'rating' %>
 </p>
-<% if @reviews.blank? %>
-  <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
-<% end %>
 
 <% @movie.reviews.each do |r| %>
   <div class="col-sm-5">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <strong><%= current_user.email %></strong> <span class="text-muted">commented 5 days ago</span>
+        <strong><%= link_to User.where(id: r.user_id).pluck(:email) %></strong> <span class="text-muted">commented 5 days ago</span>
       </div>
           <div class="panel-body">
+          <div class="row">
+          <div class="col-sm-1">
+          </div><!-- /col-sm-1 -->
            <%= r.content %>
         </div><!-- /panel-body -->
     </div><!-- /panel panel-default -->
