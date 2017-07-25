@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'kaminari'
 gem 'ratyrate', :github => 'wazery/ratyrate'
 gem 'mailcatcher'
 gem "cancan"
