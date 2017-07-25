@@ -52,14 +52,16 @@
         <strong><%= link_to User.where(id: r.user_id).pluck(:email) %></strong> <span class="text-muted">commented 5 days ago</span>
       </div>
           <div class="panel-body">
-          <div class="row">
-          <div class="col-sm-1">
-          </div><!-- /col-sm-1 -->
-           <%= r.content %>
-        </div><!-- /panel-body -->
-    </div><!-- /panel panel-default -->
+            <div class="row">
+              <div class="col-sm-1">
+              </div><!-- /col-sm-1 -->
+               <%= r.content %>
+            </div><!-- /panel-body -->
+          </div><!-- /panel panel-default -->
+     </div>
   </div><!-- /col-sm-5 -->
 <% end %>
+
 <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
 <% if can? :manage , @movie %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
