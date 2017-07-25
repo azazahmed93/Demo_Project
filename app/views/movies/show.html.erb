@@ -44,21 +44,23 @@
 <p>
   <%= rating_for @movie, 'rating' %>
 </p>
-<% @movie.reviews do |r| %>
-  <ul class="media-list">
-    <li class="media">
-      <div class="media-left">
-        <a href="#">
-          <img class="media-object" src="<%= image_tag current_user.avatar("thumb") %>" alt="...">
-        </a>
-      </div>
-      <div class="media-body">
-        <h4 class="media-heading"><%= current_user.email %></h4>
-        <%= r.text_field :content %>
-      </div>
-    </li>
-  </ul>
+<% if @reviews.blank? %>
+  <%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
 <% end %>
+
+<% @movie.reviews.each do |r| %>
+  <div class="col-sm-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= current_user.email %></strong> <span class="text-muted">commented 5 days ago</span>
+      </div>
+          <div class="panel-body">
+           <%= r.content %>
+        </div><!-- /panel-body -->
+    </div><!-- /panel panel-default -->
+  </div><!-- /col-sm-5 -->
+<% end %>
+<%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
 <% if can? :manage , @movie %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
   <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
