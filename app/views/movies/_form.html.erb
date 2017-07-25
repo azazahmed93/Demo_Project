@@ -36,26 +36,30 @@
     <%= f.text_field :time %>
   </div>
 
+  <div>
+    </br><%= f.check_box :featured %>
+    <%= f.label :featured %><br>
+  </div>
   <div class="field">
     <%= f.label :url %><br>
     <%= f.text_field :url %>
   </div>
 
-  <%=f.fields_for :posters do |p| %>
+  <%= f.fields_for :posters do |p| %>
     <%= p.label :image %>
     <%= p.file_field :file %>
     <%= p.link_to_remove "Remove Poster" %>
   <%end %>
   </br>
-  <p><%= f.link_to_add "Add Poster", :posters %></p>
- 
-  <%=f.fields_for :actors do |a| %>
-    <%= a.text_field :name %>
+  <p><%= f.link_to_add "Add Poster", :posters, class: 'btn btn-primary' %></p>
+
+  <%= f.fields_for :actors do |a| %>
+    <%= select_tag "actors", options_from_collection_for_select(Actor.all, "id", "name"), prompt: :Actor %>
     <%= a.link_to_remove "Remove Actor" %>
   <%end %>
   </br>
-  <p><%= f.link_to_add "Add Actor", :actors %></p>
-  </br>   
+  <p><%= f.link_to_add "Add Actor", :actors, class: 'btn btn-primary' %></p>
+  </br>
 
   <div class="actions">
     <%= f.submit "Save", class: 'btn btn-primary' %>

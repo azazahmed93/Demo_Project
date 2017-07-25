@@ -3,7 +3,7 @@ class MoviesController < ApplicationController
   before_filter :if_admin, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    @movies = Movie.order(year: :desc).limit(4)
+      @movies = Movie.order(year: :desc).limit(4)
   end
 
   def show
