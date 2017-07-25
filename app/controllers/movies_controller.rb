@@ -23,6 +23,7 @@ class MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
   end
 
   def new
@@ -73,7 +74,9 @@ class MoviesController < ApplicationController
     end
 
     def movie_params
-      params.require(:movie).permit(:title, :plot, :year, :genre, :time, :url, :rating, :featured, posters_attributes:
-                                   [:id, :title, :file , :_destroy], actors_attributes: [:id, :name, :_destroy])
+      params.require(:movie).permit(:title, :plot, :year, :genre, :time, :url, :rating, :featured,
+                     posters_attributes:
+                    [:id, :title, :file , :_destroy],
+                     actors_attributes: [:id, :name, :_destroy], reviews_attributes: [:content])
     end
 end

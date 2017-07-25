@@ -44,7 +44,23 @@
 <p>
   <%= rating_for @movie, 'rating' %>
 </p>
+<% @movie.reviews do |r| %>
+  <ul class="media-list">
+    <li class="media">
+      <div class="media-left">
+        <a href="#">
+          <img class="media-object" src="<%= image_tag current_user.avatar("thumb") %>" alt="...">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading"><%= current_user.email %></h4>
+        <%= r.text_field :content %>
+      </div>
+    </li>
+  </ul>
+<% end %>
 <% if can? :manage , @movie %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
-  <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
+  <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
+  class: "btn btn-primary" %>
 <% end %>
