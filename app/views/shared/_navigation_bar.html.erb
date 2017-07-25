@@ -14,7 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="<%= movies_path %>">Movies<span class="sr-only">(current)</span></a></li>
+        <li><%= nav_link 'Movies',  movies_path %></li>
         <%= nav_link 'Users', users_all_path %>
         <% if !user_signed_in? %>
           <%= nav_link 'Login', new_user_session_path %>

@@ -46,7 +46,6 @@
   <%= @movie.rating %>
 </p>
 <% if can? :manage , @movie %>
-  <%= link_to 'Back', root_path, class: "btn btn-primary" %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
-  <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %>
 <% end %>
