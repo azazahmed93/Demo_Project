@@ -11,8 +11,10 @@
                <%= review.content %></br>
             </div><!-- /panel-body -->
           </div><!-- /panel panel-default -->
-          <%= link_to "Edit" , edit_movie_review_path(@movie, review) %>
-          <%= link_to 'Delete', [@movie,review], method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% if current_user.email == review.user.email %>
+            <%= link_to "Edit" , edit_movie_review_path(@movie, review) %>
+            <%= link_to 'Delete', [@movie,review], method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
     </div>
   </div><!-- /col-sm-5 -->
 </div>

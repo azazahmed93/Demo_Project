@@ -1,2 +1,9 @@
-<h1>Reviews#edit</h1>
-<p>Find me in app/views/reviews/edit.html.erb</p>
+<%= form_for [@movie, @review] do |f| %>
+  <div class="field">
+    <%= f.text_area :content %>
+  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+    <div class="actions">
+      <%= f.submit "Save", id: "btn"  %>
+    </div>
+<% end %>

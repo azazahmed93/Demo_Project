@@ -8,6 +8,8 @@ class ReviewsController < ApplicationController
   end
 
   def edit
+    @movie = Movie.find(params[:movie_id])
+    @review = Review.find(params[:id])
   end
 
   def create
@@ -24,7 +26,9 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @review = Review.find(params[:id])
     @review.update(review_params)
+    redirect_to @movie
   end
 
   def destroy
