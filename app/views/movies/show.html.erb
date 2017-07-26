@@ -2,19 +2,26 @@
 <p>
 <div class="col-sm-6 col-md-3">
 <%@movie.posters.each do |p|%>
-    <div class="thumbnail">
-        <%=image_tag p.file("medium")%>
-    </div>
-
+  <div class="thumbnail">
+      <%=image_tag p.file("medium")%>
+  </div>
 <%end%>
   <h4><%= @movie.title %></h4>
 </p>
+
 <p>
   <strong>Official Trailer:</strong>
   <div style="margin-left: 50%">
     <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe>
   </div>
 </p>
+<div class = "row" id = "reviews_style">
+
+<div id="reviews">
+  </br><%= render @movie.reviews %>
+</div>
+
+</div>
 
 </div>
 <b>Cast: </b>
@@ -44,9 +51,7 @@
 <p>
   <%= rating_for @movie, 'rating' %>
 </p>
-<div id="reviews">
-  <%= render @movie.reviews %>
-</div>
+
 <% if can? :manage , @movie %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
   <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
