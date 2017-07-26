@@ -1,18 +1,18 @@
 <div>
-    <div class="col-sm-5">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <strong><%= link_to User.where(id: review.user_id).pluck(:email) %></strong> <span class="text-muted">commented 5 days ago</span>
-        </div>
-            <div class="panel-body">
-              <div class="row">
-                <div class="col-sm-1">
-                </div><!-- /col-sm-1 -->
-                 <%= review.content %></br>
-              </div><!-- /panel-body -->
-            </div><!-- /panel panel-default -->
-            <%= link_to "Edit" , edit_movie_review_path(@movie, review) %>
-            <%= link_to 'Delete', [@movie,review], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <div class="col-sm-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong><%= review.user.email %></strong> <span class="text-muted">commented 5 days ago</span>
       </div>
-    </div><!-- /col-sm-5 -->
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-1">
+              </div><!-- /col-sm-1 -->
+               <%= review.content %></br>
+            </div><!-- /panel-body -->
+          </div><!-- /panel panel-default -->
+          <%= link_to "Edit" , edit_movie_review_path(@movie, review) %>
+          <%= link_to 'Delete', [@movie,review], method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  </div><!-- /col-sm-5 -->
 </div>
