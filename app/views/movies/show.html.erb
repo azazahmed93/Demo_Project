@@ -15,14 +15,13 @@
     <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe>
   </div>
 </p>
-<div class = "row" id = "reviews_style">
-
-<div id="reviews">
-  </br><%= render @movie.reviews %>
-</div>
-
-</div>
-
+<% if user_signed_in? %>
+  <div class = "row" id = "reviews_style">
+    <div id="reviews">
+      </br><%= render @movie.reviews %>
+    </div>
+  </div>
+  <% end %>
 </div>
 <b>Cast: </b>
 <% @movie.actors.each do |a| %>
@@ -51,11 +50,12 @@
 <p>
   <%= rating_for @movie, 'rating' %>
 </p>
-
-<% if can? :manage , @movie %>
-  <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
-  <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
-  class: "btn btn-primary" %>
-<% else %>
-  <%= link_to "Write Review", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
+<% if user_signed_in? %>
+  <% if can? :manage , @movie %>
+    <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
+    <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
+    class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to "Write Review", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
+  <% end %>
 <% end %>
