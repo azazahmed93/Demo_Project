@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  #before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_movie
   before_action :authenticate_user!
 
@@ -11,14 +11,15 @@ class ReviewsController < ApplicationController
   end
 
   def create
-    @review = Review.new(review_params)
-    @review.user_id = current_user.id
-    @review.movie_id = @movie.id
-
+    @review=@movie.reviews.build(review_params)
+    @review.save
     if @review.save
-      redirect_to @movie
+      respond_to do |format|
+        format.js
+        format.html { redirect_to @movie }
+      end
     else
-      render 'new'
+      #render 'new'
     end
   end
 
@@ -27,8 +28,9 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
+    @review = Review.find(params[:id])
     @review.destroy
-    redirect_to root_path
+    redirect_to @movie
   end
 
   private
@@ -41,6 +43,6 @@ class ReviewsController < ApplicationController
     end
 
     def review_params
-      params.require(:review).permit(:content)
+      params.require(:review).permit(:content,:user_id)
     end
 end

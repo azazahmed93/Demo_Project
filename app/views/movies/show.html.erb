@@ -44,29 +44,13 @@
 <p>
   <%= rating_for @movie, 'rating' %>
 </p>
-
-<% @movie.reviews.each do |r| %>
-  <div class="col-sm-5">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong><%= link_to User.where(id: r.user_id).pluck(:email) %></strong> <span class="text-muted">commented 5 days ago</span>
-      </div>
-          <div class="panel-body">
-            <div class="row">
-              <div class="col-sm-1">
-              </div><!-- /col-sm-1 -->
-               <%= r.content %></br>
-            </div><!-- /panel-body -->
-          </div><!-- /panel panel-default -->
-          <%= link_to "Edit" , edit_movie_review_path(@movie, r) %>
-          <%= link_to 'Delete', [@movie,r], method: :delete, data: { confirm: 'Are you sure?' } %>
-     </div>
-  </div><!-- /col-sm-5 -->
-<% end %>
-
-<%= link_to "Write Review", new_movie_review_path(@movie), class: "btn btn-danger" %>
+<div id="reviews">
+  <%= render @movie.reviews %>
+</div>
 <% if can? :manage , @movie %>
   <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
   <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
   class: "btn btn-primary" %>
+<% else %>
+  <%= link_to "Write Review", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
 <% end %>
