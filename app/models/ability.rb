@@ -9,7 +9,7 @@ class Ability
         can :read, Review
       else
         can :read, Movie
-        can [:update, :destroy ], Review, user_id: user.id
+        can [:edit, :update, :destroy], Review, user_id: user.id
       end
   end
 end

@@ -11,7 +11,7 @@
               <%= review.content %></br>
             </div>
           </div>
-          <% if can? [:update, :destroy], review %>
+          <% if can? :edit, review %>
             <%= link_to 'Edit', edit_movie_review_path(@movie, review) %>
             <%= link_to 'Delete', [@movie,review], method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
