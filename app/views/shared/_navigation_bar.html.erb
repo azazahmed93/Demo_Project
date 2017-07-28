@@ -22,6 +22,7 @@
           <% if current_user.admin? %>
             <%= nav_link 'Users', users_path %>
             <%= nav_link 'Actors', actors_path %>
+            <%= nav_link 'Reviews', reviews_all_path %>
           <% end %>
         <% end %>
       </ul>

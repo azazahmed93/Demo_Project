@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   end
   resources :actors
   resources :users, only: [:index]
+  get 'reviews/all'
   get 'movies/home'
   root 'movies#home'
 end

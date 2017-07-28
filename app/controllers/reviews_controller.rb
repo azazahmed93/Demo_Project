@@ -1,7 +1,11 @@
 class ReviewsController < ApplicationController
   #before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :set_movie
+  before_action :set_movie, except: [:all]
   before_action :authenticate_user!
+
+  def all
+    @reviews = Review.all.page params[:page]
+  end
 
   def new
     @review = Review.new
