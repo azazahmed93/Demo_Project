@@ -69,6 +69,6 @@ class ActorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def actor_params
-      params.fetch(:actor, {})
+      params.require(:actor).permit(:name)
     end
 end
