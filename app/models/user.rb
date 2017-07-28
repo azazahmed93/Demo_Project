@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :reviews
+  has_many :reports
   has_many :favorites
   has_many :movies, through: :favorites
   has_attached_file :avatar , styles: { medium: "300x300>", thumb: "100x100>" , small: "50x50>" },
