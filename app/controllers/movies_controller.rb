@@ -1,17 +1,18 @@
 class MoviesController < ApplicationController
   before_action :set_movie, only: [:show, :edit, :update, :destroy]
-  before_filter :user_is_admin, only: [:new , :edit ,:create ,:destroy, :update]
+  before_filter :permit_movie, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
     if params[:type] == "latest"
-      @movies = Movie.order(year: :desc).page params[:page]
+      @movies = Movie.order(year: :desc)
     elsif params[:type] == "featured"
-      @movies = Movie.where(featured: true).page params[:page]
+      @movies = Movie.where(featured: true)
     elsif params[:type] == "top"
-      @movies = Movie.order(rating: :desc).page params[:page]
+      @movies = Movie.order(rating: :desc)
     else
-      @movies = Movie.order(created_at: :desc).page params[:page]
+      @movies = Movie.order(created_at: :desc)
     end
+    @movies = @movies.page params[:page]
   end
 
   def home
@@ -22,7 +23,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    @movie = Movie.find(params[:id])
+    @movie = Movie.includes(:actors).find(params[:id])
     @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
   end
 
@@ -69,14 +70,15 @@ class MoviesController < ApplicationController
       @movie = Movie.find(params[:id])
     end
 
-    def user_is_admin
+    def permit_movie
       authorize! :manage, Movie
     end
 
     def movie_params
       params.require(:movie).permit(:title, :plot, :year, :genre, :time, :url, :rating, :featured,
-                     posters_attributes:
-                    [:id, :title, :file , :_destroy],
-                     actors_attributes: [:id, :name, :_destroy], reviews_attributes: [:content, :user_id])
+                                     posters_attributes: [:id, :title, :file , :_destroy],
+                                     actors_attributes: [:id, :name, :_destroy],
+                                     reviews_attributes: [:content, :user_id]
+                                    )
     end
 end

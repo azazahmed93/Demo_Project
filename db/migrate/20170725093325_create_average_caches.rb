@@ -14,4 +14,3 @@ class CreateAverageCaches < ActiveRecord::Migration
   end
 
 end
-

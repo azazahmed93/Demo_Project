@@ -7,7 +7,6 @@ gem "cancan"
 gem "nested_form"
 gem 'ckeditor'
 gem 'bootstrap-sass'
-#gem 'sass-rails'
 gem 'paperclip'
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

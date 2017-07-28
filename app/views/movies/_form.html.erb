@@ -41,10 +41,9 @@
     <%= f.text_field :url %>
   </div>
 
-  <div>
-    <%= f.label :Feature %>
-    <%= f.check_box :featured %>
-    </br>
+  <div class="checkbox-inline">
+    <%= f.check_box :featured, class: "checkbox checkbox-primary" %>
+    <label>Featured</label>
   </div>
 
   <%= f.fields_for :posters do |p| %>
@@ -53,17 +52,15 @@
     <%= p.link_to_remove "Remove Poster" %>
   <%end %>
   </br>
-  <p><%= f.link_to_add "Add Poster", :posters, class: 'btn btn-primary' %></p>
+  <p><%= f.link_to_add "Add Poster", :posters, class: "btn btn-default btn-file" %></p>
 
   <%= f.fields_for :actors do |a| %>
-    <%= select_tag "actors", options_from_collection_for_select(Actor.all, "id", "name"), prompt: :Actor %>
-    <%= a.link_to_remove "Remove Actor" %>
+    <%= select_tag "actors", options_from_collection_for_select(Actor.all, "id", "name"), prompt: "Select Actor" %>
+    <br/><%= a.link_to_remove "Remove Actor" %>
   <%end %>
-  </br>
-  <p><%= f.link_to_add "Add Actor", :actors, class: 'btn btn-primary' %></p>
-  </br>
 
-  <div class="actions">
-    <%= f.submit "Create Movie", class: 'btn btn-primary' %>
+  <p><%= f.link_to_add "Add Actor", :actors, class: "btn btn-default btn-file" %></p>
+    <div class="actions">
+    <%= f.submit class: 'btn btn-primary' %>
   </div>
 <%end%>

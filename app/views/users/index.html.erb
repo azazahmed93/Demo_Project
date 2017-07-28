@@ -1,10 +1,10 @@
 <% if can? :manage, @users %>
-  <%@users.each do |u|%>
+  <% @users.each do |u| %>
     <%= image_tag u.avatar("thumb")%>
     <p>
       Email:<%= u.email %></br>
     <p>
     </br>
-  <%end%>
+  <% end %>
 <% end %>
 <%= paginate @users %>

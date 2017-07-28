@@ -1,32 +1,30 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <div class="col-sm-6 col-md-3">
-    <%@movie.posters.each do |p|%>
+<div class="col-sm-6 col-md-3">
+    <% @movie.posters.each do |p| %>
       <div class="thumbnail">
-        <%=image_tag p.file("medium")%>
+        <%= image_tag p.file("medium") %>
       </div>
-    <%end%>
+    <% end %>
   <h4><%= @movie.title %></h4>
-</p>
 
-<p>
-  <strong>Official Trailer:</strong>
-  <div style="margin-left: 50%">
-    <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe>
-  </div>
-</p>
-<% if user_signed_in? %>
-  <div class = "row" id = "reviews_style">
-    <div id="reviews">
-      </br><%= render @movie.reviews %>
+  <p>
+    <strong>Official Trailer:</strong>
+    <div style="margin-left: 50%">
+      <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe>
+    </div>
+  </p>
+  <div class= "container-fluid">
+    <div class = "row" id = "reviews_style">
+      <div id="reviews">
+        <p>
+          </br><%= render @reviews %>
+        </p>
+      </div>
     </div>
   </div>
-  <% end %>
 </div>
 <b>Cast: </b>
-<% @movie.actors.each do |a| %>
-  <%=a.name%>
-<%end%>
+<%= @movie.actors.collect(&:name).join(', ') %>
 
 <p>
   <strong>Plot:</strong>
