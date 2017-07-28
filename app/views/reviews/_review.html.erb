@@ -7,14 +7,14 @@
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-1">
-              </div><!-- /col-sm-1 -->
-               <%= review.content %></br>
-            </div><!-- /panel-body -->
-          </div><!-- /panel panel-default -->
-          <% if current_user.email == review.user.email %>
-            <%= link_to "Edit" , edit_movie_review_path(@movie, review) %>
+              </div>
+              <%= review.content %></br>
+            </div>
+          </div>
+          <% if can? [:update, :destroy], review %>
+            <%= link_to 'Edit', edit_movie_review_path(@movie, review) %>
             <%= link_to 'Delete', [@movie,review], method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
     </div>
-  </div><!-- /col-sm-5 -->
+  </div>
 </div>

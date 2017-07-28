@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 <p>
-<div class="col-sm-6 col-md-3">
-<%@movie.posters.each do |p|%>
-  <div class="thumbnail">
-      <%=image_tag p.file("medium")%>
-  </div>
-<%end%>
+  <div class="col-sm-6 col-md-3">
+    <%@movie.posters.each do |p|%>
+      <div class="thumbnail">
+        <%=image_tag p.file("medium")%>
+      </div>
+    <%end%>
   <h4><%= @movie.title %></h4>
 </p>
 
