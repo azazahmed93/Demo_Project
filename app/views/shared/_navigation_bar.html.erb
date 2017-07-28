@@ -20,7 +20,8 @@
           <%= nav_link 'Register', new_user_registration_path %>
         <% else %>
           <% if current_user.admin? %>
-            <%= nav_link 'Users', users_all_path %>
+            <%= nav_link 'Users', users_path %>
+            <%= nav_link 'Actors', actors_path %>
           <% end %>
         <% end %>
       </ul>

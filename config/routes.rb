@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   resources :movies do
     resources :reviews, except: [:show, :index]
   end
-  get 'users/all'
+  resources :actors
+  resources :users, only: [:index]
   get 'movies/home'
   root 'movies#home'
 end

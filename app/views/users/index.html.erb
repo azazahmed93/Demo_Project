@@ -1,4 +1,4 @@
-<%if can? :manage ,@user %>
+<% if can? :manage, @users %>
   <%@users.each do |u|%>
     <%= image_tag u.avatar("thumb")%>
     <p>
@@ -6,5 +6,5 @@
     <p>
     </br>
   <%end%>
-<%end%>
+<% end %>
 <%= paginate @users %>
