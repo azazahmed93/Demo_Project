@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Movie Reviews</h2>
+  <h2>Reported Reviews</h2>
   <table class="table table-hover">
     <thead>
       <tr>
@@ -14,8 +14,12 @@
           <td><%= report.review.movie.title %></td>
           <td><%= report.review.content %></td>
           <td><%= report.review.user.email %></td>
-          <td><%= link_to 'Destroy', [report.review.movie, report.review]  , method: :delete,
-          data: { confirm: 'Are you sure?' } %>
+          <td>
+            <%= link_to 'Delete', [report.review.movie, report.review], remote: true, method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Discard', report, method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
       <% end %>
     </tbody>

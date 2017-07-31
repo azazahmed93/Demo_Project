@@ -4,7 +4,7 @@ class ActorsController < ApplicationController
   # GET /actors
   # GET /actors.json
   def index
-    @actors = Actor.all
+    @actors = Actor.all.page params[:page]
   end
 
   # GET /actors/1
@@ -69,6 +69,6 @@ class ActorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def actor_params
-      params.require(:actor).permit(:name)
+      params.require(:actor).permit(:id, :name)
     end
 end

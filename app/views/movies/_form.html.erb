@@ -49,17 +49,19 @@
   <%= f.fields_for :posters do |p| %>
     <%= p.label :image %>
     <%= p.file_field :file %>
+    <br/>
     <%= p.link_to_remove "Remove Poster" %>
   <%end %>
+
   </br>
   <p><%= f.link_to_add "Add Poster", :posters, class: "btn btn-default btn-file" %></p>
 
-  <%= f.fields_for :actors do |a| %>
-    <%= select_tag "actors", options_from_collection_for_select(Actor.all, "id", "name"), prompt: "Select Actor" %>
-    <br/><%= a.link_to_remove "Remove Actor" %>
+  <%= f.fields_for :appearances do |appearance| %>
+    <%= appearance.collection_select :actor_id, Actor.all, :id, :name, prompt: true %>
+    <br/><%= appearance.link_to_remove "Remove Actor" %>
   <%end %>
 
-  <p><%= f.link_to_add "Add Actor", :actors, class: "btn btn-default btn-file" %></p>
+  <p><%= f.link_to_add "Add Actor", :appearances, class: "btn btn-default btn-file" %></p>
     <div class="actions">
     <%= f.submit class: 'btn btn-primary' %>
   </div>

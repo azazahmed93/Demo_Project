@@ -1,7 +1,3 @@
-<p id="notice"><%= notice %></p>
-<%if can? :manage , @movie %>
-  <%= link_to 'Add Movie', new_movie_path, class: "btn btn-primary" %>
-<%end%>
 <div class="panel panel-info" class="panel panel-default">
   <div class="panel-heading">
     <h3 class="panel-title">
@@ -13,7 +9,7 @@
     <% @latest_movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %></a>
       </div>
     </div>
   <% end %>
@@ -31,7 +27,7 @@
     <% @featured_movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %></a>
       </div>
     </div>
   <% end %>
@@ -49,7 +45,7 @@
     <% @top_movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %></a>
       </div>
     </div>
   <% end %>

@@ -5,15 +5,14 @@ class Movie < ActiveRecord::Base
   has_many :actors , through: :appearances, dependent: :destroy
 
   accepts_nested_attributes_for :posters, allow_destroy: true
-  accepts_nested_attributes_for :actors, allow_destroy: true
-
+  accepts_nested_attributes_for :appearances, allow_destroy: true
   validates :title, presence: true
 
   ratyrate_rateable "rating"
 
-  paginates_per 10
+  paginates_per 8
 
-  def code
+  def youtube_id
     self.url.split('/').last if self.url
   end
 end

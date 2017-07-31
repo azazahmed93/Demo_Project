@@ -28,9 +28,6 @@ class ReportsController < ApplicationController
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
-    redirect_to @movie
+    redirect_to reviews_all_path
   end
-
-  private
-
 end

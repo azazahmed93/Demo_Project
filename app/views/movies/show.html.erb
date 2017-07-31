@@ -1,18 +1,18 @@
-<p id="notice"><%= notice %></p>
 <div class="col-sm-6 col-md-3">
-    <% @movie.posters.each do |p| %>
-      <div class="thumbnail">
-        <%= image_tag p.file("medium") %>
-      </div>
-    <% end %>
+  <% @movie.posters.each do |p| %>
+    <div class="thumbnail">
+      <%= image_tag p.file("medium") %>
+    </div>
+  <% end %>
   <h4><%= @movie.title %></h4>
 
   <p>
     <strong>Official Trailer:</strong>
-    <div style="margin-left: 50%">
-      <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.code}" %>></iframe>
+    <div class="trailer">
+      <iframe width="560" height="349" src=<%= "http://www.youtube.com/embed/#{@movie.youtube_id}" %>></iframe>
     </div>
   </p>
+
   <div class= "container-fluid">
     <div class = "row" id = "reviews_style">
       <div id="reviews">
@@ -23,6 +23,7 @@
     </div>
   </div>
 </div>
+
 <b>Cast: </b>
 <%= @movie.actors.collect(&:name).join(', ') %>
 

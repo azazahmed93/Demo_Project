@@ -76,9 +76,8 @@ class MoviesController < ApplicationController
 
     def movie_params
       params.require(:movie).permit(:title, :plot, :year, :genre, :time, :url, :rating, :featured,
-                                     posters_attributes: [:id, :title, :file , :_destroy],
-                                     actors_attributes: [:id, :name, :_destroy],
-                                     reviews_attributes: [:content, :user_id]
+                                     posters_attributes: [:id, :file, :_destroy],
+                                     appearances_attributes: [:id, :actor_id, :movie_id, :role, :_destroy]
                                     )
     end
 end

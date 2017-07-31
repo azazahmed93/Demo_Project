@@ -1,9 +1,11 @@
 <% if can? :manage, @users %>
   <% @users.each do |u| %>
-    <%= image_tag u.avatar("thumb")%>
-    <p>
-      Email:<%= u.email %></br>
-    <p>
+    <span>
+      <%= image_tag u.avatar("thumb")%>
+      <span>
+        ID: <%= u.email %></br>
+      </span>
+    </span>
     </br>
   <% end %>
   <%= paginate @users %>

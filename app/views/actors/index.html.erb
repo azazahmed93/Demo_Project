@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Actors</h1>
 <div class="container">
   <table class="table table-hover">
     <thead>
       <tr>
-        <th colspan="3"></th>
+        <th colspan="2"></th>
       </tr>
     </thead>
 
@@ -13,14 +11,16 @@
       <% @actors.each do |actor| %>
         <tr>
           <td><%= actor.name %></td>
-          <td><%= link_to 'Show', actor %></td>
-          <td><%= link_to 'Edit', edit_actor_path(actor) %></td>
-          <td><%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <%= link_to 'Show', actor %>
+            <%= link_to 'Edit', edit_actor_path(actor) %>
+            <%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
 <br>
-
 <%= link_to 'New Actor', new_actor_path %>
+</br><%= paginate @actors %>
