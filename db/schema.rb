@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170728080847) do
+ActiveRecord::Schema.define(version: 20170731052325) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -122,7 +122,6 @@ ActiveRecord::Schema.define(version: 20170728080847) do
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
 
   create_table "reports", force: :cascade do |t|
-    t.integer  "count",      limit: 4
     t.integer  "user_id",    limit: 4
     t.integer  "review_id",  limit: 4
     t.datetime "created_at",           null: false
@@ -133,11 +132,12 @@ ActiveRecord::Schema.define(version: 20170728080847) do
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
   create_table "reviews", force: :cascade do |t|
-    t.text     "content",    limit: 65535
-    t.integer  "user_id",    limit: 4
-    t.integer  "movie_id",   limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "content",      limit: 65535
+    t.integer  "user_id",      limit: 4
+    t.integer  "movie_id",     limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "report_count", limit: 4
   end
 
   add_index "reviews", ["movie_id"], name: "index_reviews_on_movie_id", using: :btree
