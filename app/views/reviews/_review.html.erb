@@ -12,7 +12,7 @@
       </div>
       <div class="panel-body">
         <%= review.content %></br>
-      </br><%= link_to "Report", reports_path %>
+      </br><%= link_to "Report", reports_path(curr_movie: @movie, curr_review: review), method: :post %>
       </div>
     </div>
   </div>

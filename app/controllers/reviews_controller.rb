@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!
 
   def all
+    @reports = Report.all
     @reviews = Review.all.page params[:page]
   end
 

@@ -9,10 +9,14 @@ class ReportsController < ApplicationController
   end
 
   def create
-    @report = Report.new(report_params)
-    if @report.save?
-      format.html { redirect_to @movie, notice: 'Review was reported.' }
-      format.json { render :show, status: :created, location: @movie }
+    movie = params[:curr_movie]
+    review = params[:curr_review]
+    @report = Report.create(review_id: review, user_id: current_user.id)
+    if @report.save
+      respond_to do |format|
+        format.js
+        format.html { redirect_to movie_path(movie) }
+      end
     else
       format.html { render :new }
       format.json { render json: @report.errors, status: :unprocessable_entity }
@@ -26,9 +30,5 @@ class ReportsController < ApplicationController
   end
 
   private
-
-  def report_params
-    params.require(:report).permit(:count)
-  end
 
 end

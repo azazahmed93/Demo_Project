@@ -9,12 +9,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @reviews.each do |review| %>
+      <% @reports.each do |report| %>
         <tr>
-          <td><%= review.movie.title %></td>
-          <td><%= review.content %></td>
-          <td><%= review.user.email %></td>
-          <td><%= link_to 'Destroy', [review.movie, review], method: :delete,
+          <td><%= report.review.movie.title %></td>
+          <td><%= report.review.content %></td>
+          <td><%= report.review.user.email %></td>
+          <td><%= link_to 'Destroy', [report.review.movie, report.review]  , method: :delete,
           data: { confirm: 'Are you sure?' } %>
         </tr>
       <% end %>
