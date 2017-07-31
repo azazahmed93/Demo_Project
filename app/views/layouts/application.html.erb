@@ -6,12 +6,16 @@
     <%= csrf_meta_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
+
   <body>
     <%= render 'shared/navigation_bar' %>
+
     <div class='container'>
       <p id="notice"><%= notice %></p>
+
       <%= yield %>
     </div>
   </body>
+
   <%= javascript_include_tag 'ratyrate', 'data-turbolinks-track' => true %>
 </html>

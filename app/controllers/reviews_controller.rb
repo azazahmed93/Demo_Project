@@ -1,25 +1,19 @@
 class ReviewsController < ApplicationController
-  #before_action :set_review, only: [:show, :edit, :update, :destroy]
-  before_action :set_movie, except: [:all]
+  before_action :set_movie, only: [:new, :edit, :create, :update, :destroy]
   before_action :authenticate_user!
-
-  def all
-    @reports = Report.all
-    @reviews = Review.all.page params[:page]
-  end
 
   def new
     @review = Review.new
   end
 
   def edit
-    @movie = Movie.find(params[:movie_id])
     @review = Review.find(params[:id])
+    @movie = @review.movie
   end
 
   def create
-    @review=@movie.reviews.build(review_params)
-    @review.save
+    @review = @movie.reviews.build(review_params)
+
     if @review.save
       respond_to do |format|
         format.js
@@ -31,20 +25,18 @@ class ReviewsController < ApplicationController
   def update
     @review = Review.find(params[:id])
     @review.update(review_params)
+
     redirect_to @movie
   end
 
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
+
     redirect_to @movie
   end
 
   private
-    def set_review
-      @review = Review.find(params[:id])
-    end
-
     def set_movie
       @movie = Movie.find(params[:movie_id])
     end

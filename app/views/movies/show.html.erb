@@ -25,7 +25,7 @@
 </div>
 
 <b>Cast: </b>
-<%= @movie.actors.collect(&:name).join(', ') %>
+<%= @actors.pluck(:name).join(', ') %>
 
 <p>
   <strong>Plot:</strong>

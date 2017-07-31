@@ -1,7 +1,7 @@
 class ReportsController < ApplicationController
 
   def index
-    @reports = Report.all.order(created_at: :desc)
+    @reports = Report.ordered.page(params[:page])
   end
 
   def new
@@ -9,18 +9,17 @@ class ReportsController < ApplicationController
   end
 
   def create
-    movie = params[:curr_movie]
-    review = params[:curr_review]
-    @report = Report.create(review_id: review, user_id: current_user.id)
+    @report = Report.new(review_id: params[:curr_review_id], user: current_user)
+
     if @report.save
       respond_to do |format|
         format.js
-        format.html { redirect_to movie_path(movie), notice: 'Report submitted.' }
+        format.html { redirect_to movie_path(params[:curr_movie]), notice: 'Report submitted.' }
       end
     else
       respond_to do |format|
         format.js
-        format.html { redirect_to movie_path(movie), notice: 'Report already submitted.' }
+        format.html { redirect_to movie_path(params[:curr_movie]), notice: 'Report already submitted.' }
       end
     end
   end
@@ -28,6 +27,7 @@ class ReportsController < ApplicationController
   def destroy
     @report = Report.find(params[:id])
     @report.destroy
-    redirect_to reviews_all_path
+
+    redirect_to reports_path
   end
 end

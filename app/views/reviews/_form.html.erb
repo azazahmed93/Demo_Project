@@ -1,4 +1,6 @@
 <%= form_for :review,url: {action: "create"}, remote: true do |f| %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <% if @review.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
@@ -13,8 +15,8 @@
   <div class="field">
     <%= f.text_area :content %>
   </div>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+
   <div class="actions">
-    <%= f.submit "Save", id: "btn"  %>
+    <%= f.submit "Save", id: "btn" %>
   </div>
 <% end %>

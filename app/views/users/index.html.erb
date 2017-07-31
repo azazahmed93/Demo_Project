@@ -1,12 +1,12 @@
 <% if current_user.admin?  %>
-  <% @users.each do |u| %>
+  <% @users.each do |user| %>
     <span>
-      <%= image_tag u.avatar("thumb")%>
+      <%= image_tag user.avatar('thumb')%>
       <span>
-        ID: <%= u.email %></br>
+        ID: <%= user.email %>
       </span>
     </span>
-    </br>
   <% end %>
+
   <%= paginate @users %>
 <% end %>

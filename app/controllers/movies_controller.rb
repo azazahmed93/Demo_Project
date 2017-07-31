@@ -3,28 +3,19 @@ class MoviesController < ApplicationController
   before_filter :permit_movie, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    if params[:type] == "latest"
-      @movies = Movie.latest_movies.unscope(:limit)
-    elsif params[:type] == "featured"
-      @movies = Movie.featured_movies.unscope(:limit)
-    elsif params[:type] == "top"
-      @movies = Movie.top_movies.unscope(:limit)
-    else
-      @movies = Movie.all_by_created_at
-    end
-    @movies = @movies.page params[:page]
+    @movies = Movie.fetch_movies(params)
   end
 
   def home
-    @latest_movies = Movie.latest_movies
-    @featured_movies = Movie.featured_movies
-    @top_movies = Movie.top_movies
-
+    @latest_movies = Movie.latest_movies.limit(Movie::RECORDS_LIMIT)
+    @featured_movies = Movie.featured_movies.limit(Movie::RECORDS_LIMIT)
+    @top_movies = Movie.top_movies.limit(Movie::RECORDS_LIMIT)
   end
 
   def show
-    @movie = Movie.curr_movie(params[:id])
-    @reviews = Review.movie_reviews(@movie.id)
+    @movie = Movie.find(params[:id])
+    @reviews = @movie.reviews
+    @actors = @movie.actors
   end
 
   def new
@@ -33,6 +24,7 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
+
     respond_to do |format|
       if @movie.save
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }

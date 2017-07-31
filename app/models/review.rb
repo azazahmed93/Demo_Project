@@ -7,5 +7,9 @@ class Review < ActiveRecord::Base
 
   paginates_per 5
 
-  scope :movie_reviews, -> (id){where(movie_id: id).order("created_at")}
+  scope :ordered, -> { order(created_at: :desc) }
+
+  def owner?(user)
+    self.user == user
+  end
 end

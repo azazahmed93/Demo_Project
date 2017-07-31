@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
-  before_filter :is_admin, only: [:new , :edit ,:create ,:destroy, :update]
+  before_action :verify_user!, only: [:new, :index]
+
   def new
     @user = User.new
   end
 
   def index
-    @users = User.all.page params[:page]
+    @users = User.all.page(params[:page])
   end
 
   private
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:avatar)
   end
 
-  def is_admin
+  def verify_user!
     authorize! :manage, User
   end
 end

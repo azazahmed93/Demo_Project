@@ -1,21 +1,18 @@
-<div>
-  <div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <strong><%= review.user.email %></strong> <span class="text-muted"><%= time_ago_in_words(review.created_at) %></span>
-          <span class="pull-right">
-            <% if can? :update, review %>
-              <%= link_to "", edit_movie_review_path(@movie, review), class: "glyphicon glyphicon-pencil" %>
-            <% end %>
-            <% if can? :destroy, review %>
-            <%= link_to '', [@movie,review], class: "glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %>
-            <% end %>
-          </span>
-      </div>
-      <div class="panel-body" id="review_body">
-        <%= review.content %></br>
-      </br><%= link_to "Report", reports_path(curr_movie: @movie, curr_review: review), method: :post %>
-      </div>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <strong><%= review.user.email %></strong> <span class='text-muted'><%= time_ago_in_words(review.created_at) %></span>
+
+    <span class='pull-right'>
+      <%= link_to '', edit_movie_review_path(@movie, review), class: 'glyphicon glyphicon-pencil' if can? :update, review %>
+      <%= link_to '', [@movie, review], class: 'glyphicon glyphicon-trash', method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy, review %>
+    </span>
+  </div>
+
+  <div class='panel-body' id='review_body'>
+    <%= review.content %>
+    <div class='report-container'>
+      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review: review), method: :post unless review.owner?(current_user) %>
     </div>
   </div>
 </div>
+
