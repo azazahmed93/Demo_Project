@@ -7,7 +7,7 @@
             <% if can? :update, review %>
               <%= link_to "", edit_movie_review_path(@movie, review), class: "glyphicon glyphicon-pencil" %>
             <% end %>
-            <% if can? :update, review %>
+            <% if can? :destroy, review %>
             <%= link_to '', [@movie,review], class: "glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %>
             <% end %>
           </span>

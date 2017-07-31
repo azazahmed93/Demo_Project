@@ -1,4 +1,4 @@
-<% if can? :manage, @users %>
+<% if current_user.admin?  %>
   <% @users.each do |u| %>
     <span>
       <%= image_tag u.avatar("thumb")%>

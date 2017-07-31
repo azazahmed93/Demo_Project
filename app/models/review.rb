@@ -7,5 +7,5 @@ class Review < ActiveRecord::Base
 
   paginates_per 5
 
-  scope :movie_reviews, -> (id){where(movie_id: id).order("created_at DESC")}
+  scope :movie_reviews, -> (id){where(movie_id: id).order("created_at")}
 end

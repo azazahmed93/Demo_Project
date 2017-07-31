@@ -17,6 +17,8 @@ class Movie < ActiveRecord::Base
   scope :featured_movies, -> {where(featured: true).limit(4)}
   scope :top_movies, -> {order(rating: :desc).limit(4)}
   scope :curr_movie, -> (id){includes(:actors).find(id)}
+  scope :all_by_created_at, -> {order(created_at: :desc)}
+
   def youtube_id
     self.url.split('/').last if self.url
   end

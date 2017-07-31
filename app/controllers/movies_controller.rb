@@ -4,13 +4,13 @@ class MoviesController < ApplicationController
 
   def index
     if params[:type] == "latest"
-      @movies = Movie.order(year: :desc)
+      @movies = Movie.latest_movies.unscope(:limit)
     elsif params[:type] == "featured"
-      @movies = Movie.where(featured: true)
+      @movies = Movie.featured_movies.unscope(:limit)
     elsif params[:type] == "top"
-      @movies = Movie.order(rating: :desc)
+      @movies = Movie.top_movies.unscope(:limit)
     else
-      @movies = Movie.order(created_at: :desc)
+      @movies = Movie.all_by_created_at
     end
     @movies = @movies.page params[:page]
   end
