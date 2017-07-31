@@ -45,9 +45,12 @@
   <%= @movie.time %>
 </p>
 
-<p>
-  <%= rating_for @movie, 'rating' %>
-</p>
+<% if cannot? :manage, @movie %>
+  <p>
+    <%= rating_for @movie, 'rating' %>
+  </p>
+<% end %>
+
 <% if user_signed_in? %>
   <% if can? :manage , @movie %>
     <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
