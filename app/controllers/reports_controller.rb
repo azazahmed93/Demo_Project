@@ -15,11 +15,13 @@ class ReportsController < ApplicationController
     if @report.save
       respond_to do |format|
         format.js
-        format.html { redirect_to movie_path(movie) }
+        format.html { redirect_to movie_path(movie), notice: 'Report submitted.' }
       end
     else
-      format.html { render :new }
-      format.json { render json: @report.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        format.js
+        format.html { redirect_to movie_path(movie), notice: 'Report already submitted.' }
+      end
     end
   end
 

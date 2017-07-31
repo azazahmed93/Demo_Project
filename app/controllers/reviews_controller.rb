@@ -25,8 +25,6 @@ class ReviewsController < ApplicationController
         format.js
         format.html { redirect_to @movie }
       end
-    else
-      #render 'new'
     end
   end
 
