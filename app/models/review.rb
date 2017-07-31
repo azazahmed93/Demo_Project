@@ -3,5 +3,9 @@ class Review < ActiveRecord::Base
   belongs_to :user
   belongs_to :movie
 
+  validates :content, presence: true
+
   paginates_per 5
+
+  scope :movie_reviews, -> (id){where(movie_id: id).order("created_at DESC")}
 end

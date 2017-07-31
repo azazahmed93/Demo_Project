@@ -16,15 +16,15 @@ class MoviesController < ApplicationController
   end
 
   def home
-    @latest_movies = Movie.order(year: :desc).limit(4)
-    @featured_movies = Movie.where(featured: true).limit(4)
-    @top_movies = Movie.order(rating: :desc).limit(4)
+    @latest_movies = Movie.latest_movies
+    @featured_movies = Movie.featured_movies
+    @top_movies = Movie.top_movies
 
   end
 
   def show
-    @movie = Movie.includes(:actors).find(params[:id])
-    @reviews = Review.where(movie_id: @movie.id).order("created_at DESC")
+    @movie = Movie.curr_movie(params[:id])
+    @reviews = Review.movie_reviews(@movie.id)
   end
 
   def new

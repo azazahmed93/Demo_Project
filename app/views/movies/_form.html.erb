@@ -51,8 +51,9 @@
     <%= p.file_field :file %>
     <br/>
     <%= p.link_to_remove "Remove Poster" %>
-  <%end %>
+    <%= image_tag p.object.file("thumb") if p.object.file? %>
 
+  <%end %>
   </br>
   <p><%= f.link_to_add "Add Poster", :posters, class: "btn btn-default btn-file" %></p>
 

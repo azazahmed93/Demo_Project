@@ -6,8 +6,8 @@ class Ability
       if user.admin?
         can :manage, :all
       else
-        can :read, Movie
-        can [:edit, :update, :destroy], Review, user_id: user.id
+        can :read, :all
       end
+      can [:update, :destroy], Review, user_id: user.id
   end
 end

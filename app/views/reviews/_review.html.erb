@@ -4,11 +4,12 @@
       <div class="panel-heading">
         <strong><%= review.user.email %></strong> <span class="text-muted"><%= time_ago_in_words(review.created_at) %></span>
           <span class="pull-right">
-            <% if cannot? :manage, review %>
+            <% if can? :update, review %>
               <%= link_to "", edit_movie_review_path(@movie, review), class: "glyphicon glyphicon-pencil" %>
             <% end %>
-
+            <% if can? :update, review %>
             <%= link_to '', [@movie,review], class: "glyphicon glyphicon-trash", method: :delete, data: { confirm: 'Are you sure?' } %>
+            <% end %>
           </span>
       </div>
       <div class="panel-body" id="review_body">
