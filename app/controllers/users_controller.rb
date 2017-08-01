@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :verify_user!, only: [:new, :index]
+  before_action :authorize_user!, only: [:new, :index]
 
   def new
     @user = User.new
@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:avatar)
   end
 
-  def verify_user!
+  def authorize_user!
     authorize! :manage, User
   end
 end

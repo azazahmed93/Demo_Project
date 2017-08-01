@@ -9,9 +9,9 @@ class Movie < ActiveRecord::Base
   accepts_nested_attributes_for :posters, allow_destroy: true
   accepts_nested_attributes_for :appearances, allow_destroy: true
 
-  scope :latest_movies,    -> { order(year: :desc) }
-  scope :featured_movies,  -> { where(featured: true) }
-  scope :top_movies,       -> { order(rating: :desc) }
+  scope :latest,    -> { order(year: :desc) }
+  scope :featured,  -> { where(featured: true) }
+  scope :top,       -> { order(rating: :desc) }
   scope :ordered,          -> { order(created_at: :desc) }
 
   ratyrate_rateable 'rating'
@@ -25,13 +25,15 @@ class Movie < ActiveRecord::Base
   end
 
   def self.fetch_movies(params)
-    movies =  case params[:type]
-              when 'latest' then Movie.latest_movies.unscope(:limit)
-              when 'featured' then Movie.featured_movies.unscope(:limit)
-              when 'top' then Movie.top_movies.unscope(:limit)
-              else Movie.ordered
-              end
-
-    movies.page(params[:page])
+    case params[:type]
+    when 'latest'
+      Movie.latest
+    when 'featured'
+      Movie.featured
+    when 'top'
+      Movie.top
+    else
+      Movie.ordered
+    end
   end
 end

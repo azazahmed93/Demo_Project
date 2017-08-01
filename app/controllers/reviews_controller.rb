@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
+    @review = Review.includes(:movie).find(params[:id])
     @movie = @review.movie
   end
 
