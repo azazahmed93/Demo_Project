@@ -35,7 +35,7 @@
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
-          <%= image_tag( current_user.avatar("small") , class: "foundation_or_bootstrap_class") %>
+          <a href="<%= users_profile_path(user_id: current_user.id) %>"><%= image_tag( current_user.avatar("small") , class: "foundation_or_bootstrap_class") %></a>
         <% end %>
 
         <% if user_signed_in? %>
