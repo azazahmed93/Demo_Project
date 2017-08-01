@@ -1,9 +1,9 @@
 <h1>Actors</h1>
-<div class="container">
-  <table class="table table-hover">
+<div class='container'>
+  <table class='table table-hover'>
     <thead>
       <tr>
-        <th colspan="2"></th>
+        <th colspan='2'></th>
       </tr>
     </thead>
 
@@ -12,9 +12,9 @@
         <tr>
           <td><%= actor.name %></td>
           <td>
-            <%= link_to 'Show', actor %>
-            <%= link_to 'Edit', edit_actor_path(actor) %>
-            <%= link_to 'Destroy', actor, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to '', actor, class: 'glyphicon glyphicon-eye-open' %>
+            <%= link_to '', edit_actor_path(actor), class: 'glyphicon glyphicon-pencil' %>
+            <%= link_to '', actor, class: 'glyphicon glyphicon-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
       <% end %>
@@ -22,5 +22,5 @@
   </table>
 </div>
 <br>
-<%= link_to 'New Actor', new_actor_path %>
+<%= link_to 'New Actor', new_actor_path, class: 'btn btn-default' %>
 </br><%= paginate @actors %>

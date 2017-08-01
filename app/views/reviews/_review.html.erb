@@ -1,6 +1,6 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <strong><%= review.user.email %></strong> <span class='text-muted'><%= time_ago_in_words(review.created_at) %></span>
+    <strong><%= link_to review.user.email, users_profile_path(user_id: review.user.id) %></strong> <span class='text-muted'><%= time_ago_in_words(review.created_at) %></span>
 
     <span class='pull-right'>
       <%= link_to '', edit_movie_review_path(@movie, review), class: 'glyphicon glyphicon-pencil' if can? :update, review %>

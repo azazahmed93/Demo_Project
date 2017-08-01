@@ -9,6 +9,10 @@ class UsersController < ApplicationController
     @users = User.all.page(params[:page])
   end
 
+  def profile
+    @user = User.find(params[:user_id])
+  end
+
   private
 
   def user_params

@@ -1,6 +1,6 @@
-<div class="container">
+<div class='container'>
   <h2>Reported Reviews</h2>
-  <table class="table table-hover">
+  <table class='table table-hover'>
     <thead>
       <tr>
         <th>Movie</th>
@@ -15,9 +15,9 @@
           <td><%= report.review.content %></td>
           <td><%= report.review.user.email %></td>
           <td>
-            <%= link_to 'Delete', [report.review.movie, report.review], remote: true, method: :delete,
+            <%= link_to '', [report.review.movie, report.review], class: 'glyphicon glyphicon-trash', method: :delete,
             data: { confirm: 'Are you sure?' } %>
-            <%= link_to 'Discard', report, method: :delete,
+            <%= link_to '', report, method: :delete, class: 'glyphicon glyphicon-remove',
             data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
