@@ -4,7 +4,7 @@ class Report < ActiveRecord::Base
 
   paginates_per 5
 
-  validates :review_id, uniqueness: true
+  validates :review_id, uniqueness: { scope: :user_id }
 
   scope :ordered, -> { order(created_at: :desc) }
 end

@@ -11,7 +11,8 @@
   <div class='panel-body' id='review_body'>
     <%= review.content %>
     <div class='report-container'>
-      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review: review), method: :post unless review.owner?(current_user) %>
+    </br>
+      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), method: :post unless review.owner?(current_user) %>
     </div>
   </div>
 </div>

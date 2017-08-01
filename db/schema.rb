@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801103026) do
+ActiveRecord::Schema.define(version: 20170801104513) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 20170801103026) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "reports", ["review_id", "user_id"], name: "index_reports_on_review_id_and_user_id", unique: true, using: :btree
   add_index "reports", ["review_id"], name: "index_reports_on_review_id", using: :btree
   add_index "reports", ["user_id"], name: "index_reports_on_user_id", using: :btree
 
