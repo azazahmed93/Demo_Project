@@ -2,5 +2,5 @@ class Favorite < ActiveRecord::Base
   belongs_to :movie
   belongs_to :user
 
-  validates :movie_id, uniqueness: true
+  validates :user_id, uniqueness: { scope: :movie_id }
 end

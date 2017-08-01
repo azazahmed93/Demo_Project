@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170731052325) do
+ActiveRecord::Schema.define(version: 20170801103026) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 20170731052325) do
     t.datetime "updated_at",           null: false
   end
 
+  add_index "favorites", ["movie_id", "user_id"], name: "index_favorites_on_movie_id_and_user_id", unique: true, using: :btree
   add_index "favorites", ["movie_id"], name: "index_favorites_on_movie_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
