@@ -15,7 +15,7 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.includes(:reviews).find(params[:id])
     @reviews = @movie.reviews
-    @actor_names = @movie.actors.pluck(:name)
+    @actor_names = @movie.actors
   end
 
   def new
