@@ -13,8 +13,9 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
   resources :reports, only: [:index, :destroy, :new, :create]
 
-  get 'users/profile'
-  get 'reviews/all'
-  get 'movies/home'
+  post 'movies/favoritize'
+  get  'users/profile'
+  get  'reviews/all'
+  get  'movies/home'
   root 'movies#home'
 end

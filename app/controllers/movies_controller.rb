@@ -56,6 +56,20 @@ class MoviesController < ApplicationController
     end
   end
 
+  def favoritize
+    @favorite = Favorite.new(movie_id: params[:curr_movie_id], user: current_user)
+    @movie = Movie.find(params[:curr_movie_id])
+    respond_to do |format|
+      if @favorite.save
+        format.html { redirect_to @movie, notice: 'Movie was Added to favorites.' }
+        format.json { render :show, status: :created, location: @movie }
+      else
+        format.html { redirect_to @movie, notice: 'Already exists in your favorites.' }
+        format.json { render json: @movie.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
 
     def set_movie
