@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801104513) do
+ActiveRecord::Schema.define(version: 20170802110107) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -72,9 +72,10 @@ ActiveRecord::Schema.define(version: 20170801104513) do
     t.string   "time",       limit: 255
     t.string   "url",        limit: 255
     t.integer  "rating",     limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.boolean  "featured",   limit: 1
+    t.boolean  "delta",      limit: 1,     default: true, null: false
   end
 
   create_table "overall_averages", force: :cascade do |t|

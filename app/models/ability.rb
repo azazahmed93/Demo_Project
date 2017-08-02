@@ -12,7 +12,6 @@ class Ability
       else
         can :read, :all
       end
-
       can [:update, :destroy], Review, user_id: user.id
   end
 end
