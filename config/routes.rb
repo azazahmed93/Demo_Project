@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace 'api' do
     devise_for :users
+    resources :movies, only: [:index, :show, :search]
   end
     resources :movies do
       collection do
