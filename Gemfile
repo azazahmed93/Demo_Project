@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'thinking-sphinx'
 gem 'kaminari'
 gem 'ratyrate', :github => 'wazery/ratyrate'
 gem 'mailcatcher'
