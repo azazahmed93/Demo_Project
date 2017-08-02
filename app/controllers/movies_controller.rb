@@ -3,7 +3,11 @@ class MoviesController < ApplicationController
   before_filter :permit_movie, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    @movies = Movie.fetch_movies(params).page(params[:page])
+    if params[:type]
+      @movies = Movie.fetch_movies(params).page(params[:page])
+    else
+      @movies = Movie.search(params[:search])
+    end
   end
 
   def home

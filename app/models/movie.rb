@@ -2,7 +2,7 @@ class Movie < ActiveRecord::Base
   has_many :posters, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :appearances
-  has_many :actors , through: :appearances, dependent: :destroy
+  has_many :actors, through: :appearances, dependent: :destroy
 
   validates :title, :plot, :genre, :year, presence: true
 
@@ -12,7 +12,7 @@ class Movie < ActiveRecord::Base
   scope :latest,    -> { order(year: :desc) }
   scope :featured,  -> { where(featured: true) }
   scope :top,       -> { order(rating: :desc) }
-  scope :ordered,          -> { order(created_at: :desc) }
+  scope :ordered,   -> { order(created_at: :desc) }
 
   ratyrate_rateable 'rating'
 
