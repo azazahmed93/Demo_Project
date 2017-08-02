@@ -1,13 +1,9 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:edit, :update, :destroy]
   before_filter :permit_movie, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    if params[:type]
-      @movies = Movie.fetch_movies(params).page(params[:page])
-    else
-      @movies = Movie.search(params[:search])
-    end
+    @movies = Movie.fetch_movies(params).page(params[:page])
   end
 
   def home
@@ -19,7 +15,7 @@ class MoviesController < ApplicationController
   def show
     @movie = Movie.includes(:reviews).find(params[:id])
     @reviews = @movie.reviews
-    @actor_names = @movie.actors
+    @actors = @movie.actors
   end
 
   def new
@@ -72,6 +68,10 @@ class MoviesController < ApplicationController
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def search
+    @movies = Movie.search(params[:search]).page(params[:page])
   end
 
   private

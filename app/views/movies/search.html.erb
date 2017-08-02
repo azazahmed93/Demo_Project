@@ -1,0 +1,10 @@
+<div class="panel-body">
+  <% @movies.each do |movie| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= paginate @movies %>

@@ -26,13 +26,12 @@
         <% end %>
       </ul>
 
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <%= text_field_tag :search, params[:search], class: 'form-control' %>
-        </div>
-        <%= link_to 'Submit', movies_path(:search), class: "btn btn-primary" %>
-
-      </form>
+      <div class="search-form">
+        <%= form_tag search_movies_path, method: :get, id: 'search-form' do %>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Search Movies', style: 'width: 20%; margin-top: 0.5%; margin-bottom: -2%;' %>
+          <%= link_to '', "#", onclick: "$('#search-form').submit()", class: 'glyphicon glyphicon-search', style: 'margin-left: 18%;' %>
+        <% end %>
+      </div>
 
       <ul class="nav navbar-nav navbar-right">
         <% if current_user %>
