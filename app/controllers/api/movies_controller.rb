@@ -1,4 +1,4 @@
-class API::MoviesController < ApplicationController
+class API::MoviesController < API::BaseController
   def index
     @movies = Movie.fetch_movies(params)
     render json: @movies
