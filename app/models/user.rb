@@ -20,4 +20,12 @@ class User < ActiveRecord::Base
   ratyrate_rater
 
   paginates_per 5
+
+  def generate_token
+    self.auth_token = loop do
+      random = SecureRandom.urlsafe_base64(nil, false)
+      break random unless User.exists?(auth_token: random)
+    end
+  end
+
 end
