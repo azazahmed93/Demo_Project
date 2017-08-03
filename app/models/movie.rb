@@ -3,7 +3,8 @@ class Movie < ActiveRecord::Base
   has_many :reviews, dependent: :destroy
   has_many :appearances
   has_many :actors, through: :appearances, dependent: :destroy
-
+  has_many :favorites
+  has_many :users, through: :favorites, dependent: :destroy
   validates :title, :plot, :genre, :year, presence: true
 
   accepts_nested_attributes_for :posters, allow_destroy: true
