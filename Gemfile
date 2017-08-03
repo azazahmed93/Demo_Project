@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails-api'
 gem 'active_model_serializers'
 gem 'thinking-sphinx'
 gem 'kaminari'
