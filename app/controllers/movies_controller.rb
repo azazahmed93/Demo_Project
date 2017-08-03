@@ -51,7 +51,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     respond_to do |format|
-      format.html { redirect_to root_url, notice: 'Movie was successfully destroyed.' }
+      format.html { redirect_to movies_path, notice: 'Movie was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,7 +64,7 @@ class MoviesController < ApplicationController
         format.html { redirect_to @movie, notice: 'Movie was Added to favorites.' }
         format.json { render :show, status: :created, location: @movie }
       else
-        format.html { redirect_to @movie, notice: 'Already exists in your favorites.' }
+        format.html { redirect_to @movie, alert: 'Already exists in your favorites.' }
         format.json { render json: @movie.errors, status: :unprocessable_entity }
       end
     end
