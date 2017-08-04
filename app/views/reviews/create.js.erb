@@ -2,3 +2,5 @@ $('#review_content').remove();
 $('#btn').remove();
 $("#add_review").show();
 $("#reviews").append('<%= j render @review %>');
+$('body, html').animate({ scrollTop: $("#review_id_<%= @review.id %>").offset().top }, 800);
+

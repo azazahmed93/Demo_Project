@@ -57,7 +57,7 @@
     <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
     class: "btn btn-primary" %>
   <% else %>
-    <%= link_to "Write Review", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
     <%= link_to "Add to Favorties", movies_favoritize_path(curr_movie_id: @movie.id), class: "btn btn-danger", method: :post %>
+    <%= link_to "Write Review", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
   <% end %>
 <% end %>

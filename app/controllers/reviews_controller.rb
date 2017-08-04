@@ -13,8 +13,11 @@ class ReviewsController < ApplicationController
 
   def create
     @review = @movie.reviews.build(review_params)
-
     if @review.save
+      (@movie.users - [current_user]).each do |user|
+        UserMailer.notify_with_email(user).deliver_later
+      end
+
       respond_to do |format|
         format.js
         format.html { redirect_to @movie }
