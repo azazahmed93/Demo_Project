@@ -48,7 +48,8 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-adapter: postgresql
+  <<: *default
+  adapter: postgresql
   database: popcorn-time_production
-  pool: 5
-  timeout: 5000
+  username: popcorn-time
+  password: <%= ENV['POPCORN-TIME_DATABASE_PASSWORD'] %>
