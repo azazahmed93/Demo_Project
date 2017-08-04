@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :users, only: [:index]
   resources :reports, only: [:index, :destroy, :new, :create]
 
+  delete 'users/destroy'
   post 'movies/favoritize'
   get  'users/profile'
   get  'reviews/all'

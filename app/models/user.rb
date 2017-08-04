@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :reviews
-  has_many :reports
-  has_many :favorites
+  has_many :reviews, dependent: :destroy
+  has_many :reports, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :movies, through: :favorites
 
   has_attached_file :avatar,

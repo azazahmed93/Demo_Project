@@ -1,12 +1,29 @@
-<% if current_user.admin?  %>
-  <% @users.each do |user| %>
-    <span>
-      <%= image_tag user.avatar('thumb') %>
-      <span>
-        ID: <%= user.email %>
-      </span>
-    </span>
-  <% end %>
-  </br>
+<div class='container'>
+  <table class='table table-hover'>
+    <thead>
+      <tr>
+        <th colspan='2'></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% if current_user.admin?  %>
+       <% @users.each do |user| %>
+        <tr>
+          <td><span>
+            <a href="<%= users_profile_path(user_id: user.id) %>"><%= image_tag user.avatar('thumb') %></a>
+            <span>
+              ID: <%= user.email %>
+            </span>
+            </span>
+          </td>
+          <td></br>
+            <%= link_to '', users_destroy_path(id: user.id), class: 'glyphicon glyphicon-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
   <%= paginate @users %>
-<% end %>
+</div>
