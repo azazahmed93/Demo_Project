@@ -6,7 +6,6 @@ gem 'active_model_serializers'
 gem 'thinking-sphinx'
 gem 'kaminari'
 gem 'ratyrate', :github => 'wazery/ratyrate'
-gem 'mailcatcher'
 gem "cancan"
 gem "nested_form"
 gem 'ckeditor'
