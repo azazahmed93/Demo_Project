@@ -15,3 +15,27 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body
+{
+  /* fallback */
+  background-color: #2F2727;
+  background-image: url(images/radial_fancy.png);
+  background-position: 80% 20%;
+  background-repeat: no-repeat;
+
+  /* Safari 4-5, Chrome 1-9 */
+  background: -webkit-gradient(radial, 80% 20%, 0, 80% 40%, 100, from(#1a82f7), to(#2F2727));
+
+  /* Safari 5.1+, Chrome 10+ */
+  background: -webkit-radial-gradient(80% 20%, closest-corner, #1a82f7, #2F2727);
+
+  /* Firefox 3.6+ */
+  background: -moz-radial-gradient(80% 20%, closest-corner, #1a82f7, #2F2727);
+
+  /* IE 10 */
+  background: -ms-radial-gradient(80% 20%, closest-corner, #1a82f7, #2F2727);
+
+  /* Opera cannot do radial gradients yet */
+  color: grey
+}
