@@ -39,3 +39,13 @@ body
   /* Opera cannot do radial gradients yet */
   color: grey
 }
+
+.navbar
+{
+  background: #e0f3fa;
+background: -moz-linear-gradient(top, #e0f3fa 0%, #d8f0fc 50%, #b8e2f6 51%, #b6dffd 100%);
+background: -webkit-linear-gradient(top, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
+background: linear-gradient(to bottom, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f3fa', endColorstr='#b6dffd',GradientType=0 );
+  box-shadow: 0px 3px 5px grey;
+}
