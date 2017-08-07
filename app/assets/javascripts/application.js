@@ -14,6 +14,7 @@
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require jquery_ujs
+//= require ckeditor-jquery
 //= require ckeditor/init
 //= require jquery_nested_form
 //= require jquery.raty
