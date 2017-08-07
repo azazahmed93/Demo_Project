@@ -4,7 +4,7 @@
         <h1 class=""><%= @user.email %></h1>
         <br>
       </div>
-    <div class="col-sm-2"><a href="/users"><img title="profile image" class="img-circle img-responsive" src="<%= @user.avatar("thumb") %>"></a></div>
+    <div class="col-sm-2"><a href="#"><img title="profile image" class="img-circle img-responsive" src="<%= @user.avatar("thumb") %>"></a></div>
   </div>
   <br>
 </div>
@@ -13,7 +13,7 @@
 <div class="col-sm-3" style="margin-top: 8.5%">
   <ul class="list-group">
     <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @user.created_at %></li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= time_ago_in_words(@user.created_at) %>-ago</li>
     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
     <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span> Josep Doe</li>
   </ul>
@@ -23,7 +23,9 @@
 </div>
 
 <div class="panel panel-info target" class="col-md-2">
-  <div class="panel-heading" contenteditable="false"><h2>Favorite Movies</h2></div>
+  <% if !@user.admin %>
+   <div class="panel-heading" contenteditable="false"><h2>Favorite Movies</h2></div>
+  <% end %>
   <div class="panel-body">
     <div class="row">
       <div class="panel-body">
