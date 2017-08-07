@@ -3,13 +3,13 @@ class MoviesController < ApplicationController
   before_filter :permit_movie, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    @movies = Movie.fetch_movies(params).page(params[:page])
+    @movies = Movie.includes(:posters).fetch_movies(params).page(params[:page])
   end
 
   def home
-    @latest_movies = Movie.latest.limit(Movie::RECORDS_LIMIT)
-    @featured_movies = Movie.featured.limit(Movie::RECORDS_LIMIT)
-    @top_movies = Movie.top.limit(Movie::RECORDS_LIMIT)
+    @latest_movies = Movie.includes(:posters).latest.limit(Movie::RECORDS_LIMIT)
+    @featured_movies = Movie.includes(:posters).featured.limit(Movie::RECORDS_LIMIT)
+    @top_movies = Movie.top.includes(:posters).limit(Movie::RECORDS_LIMIT)
   end
 
   def show
