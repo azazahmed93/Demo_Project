@@ -4,6 +4,14 @@ GIT
   specs:
     ratyrate (1.2.2.alpha)
 
+GIT
+  remote: https://github.com/galetahub/ckeditor.git
+  revision: 4b747ed2f72261bfe2390584aec85c08959fb355
+  specs:
+    ckeditor (4.2.4)
+      cocaine
+      orm_adapter (~> 0.5.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -61,9 +69,6 @@ GEM
     cancan (1.6.10)
     case_transform (0.2)
       activesupport
-    ckeditor (4.2.4)
-      cocaine
-      orm_adapter (~> 0.5.0)
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
@@ -229,7 +234,7 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   cancan
-  ckeditor
+  ckeditor!
   coffee-rails (~> 4.1.0)
   delayed_job_active_record
   devise
