@@ -7,7 +7,7 @@ gem 'kaminari'
 gem 'ratyrate', :github => 'wazery/ratyrate'
 gem "cancan"
 gem "nested_form"
-gem 'ckeditor'
+gem 'ckeditor', :git => "https://github.com/galetahub/ckeditor.git"
 gem 'bootstrap-sass'
 gem 'paperclip'
 gem 'devise'
