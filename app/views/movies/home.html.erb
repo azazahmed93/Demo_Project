@@ -6,11 +6,11 @@
     </h3>
   </div>
 
-  <div class="panel-body" >
+  <div class="panel-body">
     <% @latest_movies.each do |movie| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
-        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %></a>
+        <a href="<%= movie_path(movie) %>"><%= image_tag movie.posters.first.file("medium") %></a>
       </div>
     </div>
   <% end %>
