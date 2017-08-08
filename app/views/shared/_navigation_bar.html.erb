@@ -15,7 +15,6 @@
         <li><%= nav_link 'Movies',  movies_path %></li>
         <% if !user_signed_in? %>
           <%= nav_link 'Login', new_user_session_path %>
-          <%= nav_link 'Register', new_user_registration_path %>
         <% else %>
           <% if current_user.admin? %>
             <%= nav_link 'Users', users_path %>
