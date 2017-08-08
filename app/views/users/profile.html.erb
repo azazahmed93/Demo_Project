@@ -32,6 +32,7 @@
         <% @user.favorites.each do |favorite| %>
           <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
+              <a class="close" href="#">×</a>
               <a href="<%= movie_path(favorite.movie) %>"> <%= image_tag favorite.movie.posters.first.file("medium") %> </a>
             </div>
           </div>

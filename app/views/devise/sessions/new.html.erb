@@ -4,6 +4,7 @@
       <div class="row">
         <div class="col-md-8 nav-tab-holder"></div>
       </div>
+
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
           <div class="row">
@@ -32,7 +33,7 @@
                       <%= f.label :remember_me %>
                     </div>
                   <% end -%>
-
+                  <br>
                   <div class="actions">
                     <%= f.submit "Log in", class: 'btn btn-primary' %>
                   </div>
@@ -114,15 +115,16 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
+
       </div>
     </div>
   </div>
 </div>
 
 <script>
-$(document).ready(function(){
-$("#myBtn").click(function(){
-$("#myModal").modal();
-});
-});
+  $(document).ready(function(){
+    $("#myBtn").click(function(){
+      $("#myModal").modal();
+    });
+  });
 </script>

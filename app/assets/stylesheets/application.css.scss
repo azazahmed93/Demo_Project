@@ -156,7 +156,6 @@ article[role="login"] p {
 
 }
 
-
 .nav-tab-holder
 .nav-tabs > li > a {
   background: #d9d9d9;
@@ -175,8 +174,6 @@ article[role="login"] p {
   padding: 0;
 }
 
-
-
 .nav-tab-holder .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
@@ -184,4 +181,9 @@ article[role="login"] p {
   background-color: #23bab5;
   border: 0;
   border-radius: 0;
+}
+
+.active a
+{
+  background: aliceblue !important;
 }

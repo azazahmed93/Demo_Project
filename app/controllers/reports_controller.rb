@@ -1,5 +1,4 @@
 class ReportsController < ApplicationController
-
   def index
     @reports = Report.ordered.page(params[:page])
   end
@@ -19,7 +18,7 @@ class ReportsController < ApplicationController
     else
       respond_to do |format|
         format.js
-        format.html { redirect_to movie_path(params[:curr_movie]), notice: 'Report already submitted.' }
+        format.html { redirect_to movie_path(params[:curr_movie]), alert: 'Report already submitted.' }
       end
     end
   end
