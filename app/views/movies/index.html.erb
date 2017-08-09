@@ -1,6 +1,6 @@
 <p>
   <% if can? :manage, Movie %>
-    <%= link_to '', new_movie_path, class: "glyphicon glyphicon-plus" %>
+    <%= link_to '', new_movie_path, class: "glyphicon glyphicon-plus", id: "remove" %>
   <%end%>
 </p>
 <div class="panel-body">
