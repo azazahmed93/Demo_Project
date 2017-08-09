@@ -1,6 +1,6 @@
 <div class='panel panel-default'>
   <div class='panel-heading'>
-    <strong><%= link_to review.user.email, users_profile_path(user_id: review.user.id) %></strong> <span class='text-muted'><%= time_ago_in_words(review.created_at) %></span>
+    <strong><%= link_to review.user.email, users_profile_path(user_id: review.user.id), id: 'remove' %></strong> <span class='text-muted'><%= time_ago_in_words(review.created_at) %></span>
 
     <span class='pull-right'>
       <%= link_to '', edit_movie_review_path(@movie, review), class: 'glyphicon glyphicon-pencil' if can? :update, review %>
@@ -11,8 +11,8 @@
   <div class='panel-body' id='review_id_<%= review.id %>'>
     <%= review.content %>
     <div class='report-container'>
-    </br>
-      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), method: :post unless review.owner?(current_user) %>
+      </br>
+      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), id: 'remove', method: :post unless review.owner?(current_user) %>
     </div>
   </div>
 </div>

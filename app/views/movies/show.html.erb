@@ -25,7 +25,7 @@
 </div>
 
 <b>Cast: </b>
-<%= raw @actors.collect { |actor| link_to actor.name, actor }.join(",") %>
+<%= raw @actors.collect { |actor| link_to actor.name, actor, id: 'remove' }.join(",") %>
 <p>
   <strong>Plot:</strong>
   <%= raw @movie.plot %>
