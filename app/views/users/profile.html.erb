@@ -23,16 +23,18 @@
 </div>
 
 <div class="panel panel-info target" class="col-md-2">
+
   <% if !@user.admin %>
    <div class="panel-heading" contenteditable="false"><h2>Favorite Movies</h2></div>
   <% end %>
+
   <div class="panel-body">
     <div class="row">
       <div class="panel-body">
         <% @user.favorites.each do |favorite| %>
           <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
-              <a class="close" href="#">×</a>
+              <%= link_to '', unfavorite_movies_path(fav_movie: favorite.movie_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove', id: 'remove' %>
               <a href="<%= movie_path(favorite.movie) %>"> <%= image_tag favorite.movie.posters.first.file("medium") %> </a>
             </div>
           </div>

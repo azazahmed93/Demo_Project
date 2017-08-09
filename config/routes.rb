@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :movies do
       collection do
         get 'search'
+        delete 'unfavorite'
       end
       resources :reviews, except: [:show, :index] do
       end

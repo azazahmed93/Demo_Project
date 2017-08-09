@@ -70,6 +70,18 @@ class MoviesController < ApplicationController
     end
   end
 
+  def unfavorite
+    @fav = Favorite.where(movie_id: params[:fav_movie], user_id: current_user.id)
+    @unfav = Favorite.find(@fav.first.id)
+    respond_to do |format|
+      if @unfav.destroy
+        format.html { redirect_to users_profile_path(user_id: current_user),
+        notice: 'Removed from list.' }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   def search
     @movies = Movie.search(params[:search]).page(params[:page])
   end
