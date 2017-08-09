@@ -1,15 +1,39 @@
-<p>
-  <% if can? :manage, Movie %>
-    <%= link_to '', new_movie_path, class: "glyphicon glyphicon-plus", id: "remove" %>
-  <%end%>
-</p>
-<div class="panel-body">
-  <% @movies.each do |movie| %>
-    <div class="col-sm-6 col-md-3">
-      <div class="thumbnail">
-        <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+<% if can? :manage, Movie %>
+  <h1>Movies</h1>
+  <div class='container'>
+    <table class='table table-hover'>
+      <thead>
+        <tr>
+          <th colspan='2'></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @movies.each do |movie| %>
+          <tr>
+            <td><%= movie.title %></td>
+            <td>
+              <%= link_to '', movie, class: 'glyphicon glyphicon-eye-open' %>
+              <%= link_to '', edit_movie_path(movie), class: 'glyphicon glyphicon-pencil' %>
+              <%= link_to '', movie, class: 'glyphicon glyphicon-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= link_to 'New Movie', new_movie_path, class: "btn btn-default" %>
+  </div>
+  <br>
+
+<% else %>
+  <div class="panel-body">
+    <% @movies.each do |movie| %>
+      <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+          <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+        </div>
       </div>
-    </div>
-  <% end %>
-</div>
-<%= paginate @movies %>
+    <% end %>
+  </div>
+  <%= paginate @movies %>
+<%end%>

@@ -2,7 +2,7 @@ class ActorsController < ApplicationController
   before_action :set_actor, only: [:show, :edit, :update, :destroy]
 
   def index
-    @actors = Actor.all.page params[:page]
+    @actors = Actor.order(created_at: :desc).all.page params[:page]
   end
 
   def show
@@ -20,7 +20,7 @@ class ActorsController < ApplicationController
 
     respond_to do |format|
       if @actor.save
-        format.html { redirect_to @actor, notice: 'Actor was successfully created.' }
+        format.html { redirect_to actors_path, notice: 'Actor was successfully created.' }
         format.json { render :show, status: :created, location: @actor }
       else
         format.html { render :new }

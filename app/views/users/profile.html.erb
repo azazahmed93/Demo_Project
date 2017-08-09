@@ -35,7 +35,7 @@
           <div class="col-sm-6 col-md-3">
             <div class="thumbnail">
               <% if @user == current_user %>
-                <%= link_to '', unfavorite_movies_path(fav_movie: favorite.movie_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove', id: 'remove' %>
+                <%= link_to '', unfavorite_movies_path(fav_movie: favorite.movie_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove rem', id: 'remove' %>
               <% end %>
               <a href="<%= movie_path(favorite.movie) %>"> <%= image_tag favorite.movie.posters.first.file("medium") %> </a>
             </div>

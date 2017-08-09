@@ -12,7 +12,7 @@
     <%= review.content %>
     <div class='report-container'>
       </br>
-      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), id: 'remove', method: :post unless review.owner?(current_user) %>
+      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), id: 'remove', method: :post unless review.owner?(current_user) if user_signed_in? %>
     </div>
   </div>
 </div>

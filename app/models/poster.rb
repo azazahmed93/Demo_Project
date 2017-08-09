@@ -5,7 +5,7 @@ class Poster < ActiveRecord::Base
                       medium: '300x300>',
                       thumb: '100x100>'
                     },
-                    default_url: '/images/default.jpg'
+                    default_url: ActionController::Base.helpers.asset_path('na.jpg')
 
   validates_attachment_content_type :file, content_type: ['image/jpg', 'image/jpeg',
                                     'image/png', 'image/gif', 'application/pdf']
