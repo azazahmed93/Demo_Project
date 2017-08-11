@@ -23,6 +23,7 @@
     </table>
     <%= link_to 'New Movie', new_movie_path, class: "btn btn-default" %>
   </div>
+  <%= paginate @movies %>
   <br>
 
 <% else %>

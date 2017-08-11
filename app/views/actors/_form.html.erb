@@ -1,22 +1,40 @@
-<%= form_for(@actor) do |f| %>
-  <% if @actor.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@actor.errors.count, "error") %> prohibited this actor from being saved:</h2>
-
-      <ul>
-      <% @actor.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="container">
+  <div class="col-md-12 col-lg-offset-2">
+    <div class="login-signup">
+      <div class="row">
+        <div class="col-md-8 nav-tab-holder"></div>
+      </div>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="home">
+          <div class="row">
+            <div class="col-md-8 mobile-pull">
+              <article role="login">
+                <h3 class="text-center"><i class="fa fa-lock"></i>Actor</h3>
+                <%= form_for(@actor) do |f| %>
+                  <% if @actor.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(@actor.errors.count, "error") %> prohibited this actor from being saved:</h2>
+                      <ul>
+                      <% @actor.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                      <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+                  <div class="field" >
+                    <%= f.label :name %><br>
+                    <%= f.text_field :name %>
+                  </div>
+                  <br>
+                  <div class="actions">
+                    <%= f.submit class: "btn btn-info btn-lg" %>
+                  </div>
+                <% end %>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field" >
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

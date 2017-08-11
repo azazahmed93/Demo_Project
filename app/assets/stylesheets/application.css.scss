@@ -10,15 +10,20 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
- */
+*= require owl.carousel
+*= require owl.theme
+*= require_tree .
+*= require_self
+*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-body
+.wrap-review
 {
-  /* fallback */
+  word-wrap:break-word; max-width: 200px;
+}
+.body-style
+{
   background-color: #2F2727;
   background-image: url(images/radial_fancy.png);
   background-position: 80% 20%;
@@ -35,28 +40,26 @@ body
 
   /* IE 10 */
   background: -ms-radial-gradient(80% 20%, closest-corner, #1a82f7, #2F2727);
-
-  /* Opera cannot do radial gradients yet */
-  color: grey
+  color: #07848f
 }
 
 .navbar
 {
   background: #e0f3fa;
-background: -moz-linear-gradient(top, #e0f3fa 0%, #d8f0fc 50%, #b8e2f6 51%, #b6dffd 100%);
-background: -webkit-linear-gradient(top, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
-background: linear-gradient(to bottom, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f3fa', endColorstr='#b6dffd',GradientType=0 );
+  background: -moz-linear-gradient(top, #e0f3fa 0%, #d8f0fc 50%, #b8e2f6 51%, #b6dffd 100%);
+  background: -webkit-linear-gradient(top, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
+  background: linear-gradient(to bottom, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f3fa', endColorstr='#b6dffd',GradientType=0 );
   box-shadow: 0px 3px 5px grey;
 }
 
 .panelheads
 {
-background: #e0f3fa;
-background: -moz-linear-gradient(top, #e0f3fa 0%, #d8f0fc 50%, #b8e2f6 51%, #b6dffd 100%);
-background: -webkit-linear-gradient(top, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
-background: linear-gradient(to bottom, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f3fa', endColorstr='#b6dffd',GradientType=0 );
+  background: #e0f3fa;
+  background: -moz-linear-gradient(top, #e0f3fa 0%, #d8f0fc 50%, #b8e2f6 51%, #b6dffd 100%);
+  background: -webkit-linear-gradient(top, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
+  background: linear-gradient(to bottom, #e0f3fa 0%,#d8f0fc 50%,#b8e2f6 51%,#b6dffd 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0f3fa', endColorstr='#b6dffd',GradientType=0 );
 }
 .link
 {
@@ -130,22 +133,22 @@ article[role="login"] p {
   padding: 0 0 0 30px;
   float: right;
 }
-  .nav-tab-holder {
-    float: none;
-    overflow: hidden;
-  }
+.nav-tab-holder {
+  float: none;
+  overflow: hidden;
+}
 
-  .nav-tabs > li > a {
-    font-size: 13px;
-    font-weight: 600;
-    padding: 10px 5px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+.nav-tabs > li > a {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
-  .nav-tabs > li {
-    width: 50%;
-  }
+.nav-tabs > li {
+  width: 50%;
+}
 
 .nav-tab-holder .nav-tabs {
   border: 0;
@@ -153,7 +156,6 @@ article[role="login"] p {
   display: table;
   table-layout: fixed;
   width: 100%;
-
 }
 
 .nav-tab-holder
@@ -201,4 +203,13 @@ article[role="login"] p {
 html,body
 {
   overflow-x: hidden;
+}
+
+.txt{
+
+  text-align: center;
+}
+
+.panel-body{
+  word-break:break-all
 }

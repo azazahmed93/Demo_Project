@@ -5,7 +5,7 @@
       <tr>
         <th>Movie</th>
         <th>Review</th>
-        <th>Email</th>
+        <th>Reviewer</th>
         <th></th>
       </tr>
     </thead>
@@ -13,7 +13,20 @@
       <% @reports.each do |report| %>
         <tr>
           <td><%= report.review.movie.title %></td>
-          <td><%= report.review.content %></td>
+          <td id='read-more-<%= report.review.id %>' class="wrap-review">
+            <% if report.review.content.length > 50 %>
+              <%= truncate(report.review.content, length: 30) %>
+              <%= link_to '...Read more', '', class: "read-more-#{report.review.id}" %>
+                <script>
+                  $('.read-more-<%= report.review.id %>').on('click', function(e) {
+                    e.preventDefault()
+                    $(this).parent().html('<%= escape_javascript report.review.content %>')
+                  })
+                </script>
+            <% else %>
+              <p> <%= report.review.content %> </p>
+            <% end %>
+          </td>
           <td><%= report.review.user.email %></td>
           <td>
             <%= link_to '', [report.review.movie, report.review], class: 'glyphicon glyphicon-trash', method: :delete,

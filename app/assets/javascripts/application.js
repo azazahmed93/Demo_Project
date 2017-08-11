@@ -19,4 +19,5 @@
 //= require jquery_nested_form
 //= require jquery.raty
 //= require ratyrate
+//= require owl.carousel
 //= require_tree .

@@ -14,8 +14,7 @@
 <div class="col-sm-3" style="margin-top: 8.5%">
   <ul class="list-group">
     <li class="list-group-item text-muted" contenteditable="false"><h2><%= @actor.name %></h2></li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= @actor.created_at %></li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span> Empty</li>
+    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= time_ago_in_words(@actor.created_at) %>-ago</li>
   </ul>
   <div class="panel panel-info">
     <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
@@ -23,7 +22,7 @@
 </div>
 
 <div class="panel panel-info target" class="col-md-2">
-  <div class="panel-heading" contenteditable="false"><h2>Movie Appearances</h2></div>
+  <div class="panel-heading txt" contenteditable="false"><h2>Movie Appearances</h2></div>
   <div class="panel-body">
     <div class="row">
       <div class="panel-body">

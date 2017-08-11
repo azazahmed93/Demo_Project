@@ -10,4 +10,30 @@ module ApplicationHelper
       end
     end
   end
+
+  def bootstrap_class_for(flash_type)
+    case flash_type.to_sym
+      when :success
+        "alert-success"
+      when :error
+        "alert-danger"
+      when :alert
+        "alert-danger"
+      when :notice
+        "alert-success"
+      when :warning
+        "alert-warning"
+      else
+        flash_type.to_s
+    end
+  end
+
+  def body_class_helper
+    if user_signed_in? and current_user.admin?
+      then ''
+    elsif !user_signed_in?
+       then 'body-style'
+    else 'body-style'
+    end
+  end
 end

@@ -5,7 +5,8 @@ class Movie < ActiveRecord::Base
   has_many :actors, through: :appearances
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
-  validates :title, :plot, :genre, :year, presence: true
+
+  validates :title, :plot, :genre, :year, :posters, :appearances, presence: true
 
   accepts_nested_attributes_for :posters, allow_destroy: true
   accepts_nested_attributes_for :appearances, allow_destroy: true
@@ -17,7 +18,7 @@ class Movie < ActiveRecord::Base
 
   ratyrate_rateable 'rating'
 
-  paginates_per 8
+  paginates_per 4
 
   RECORDS_LIMIT = 4
 

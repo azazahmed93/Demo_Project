@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
   <head>
     <title>PopcornTime</title>
@@ -7,31 +6,12 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   </head>
 
-  <body>
+  <body class='<%= body_class_helper %>'>
     <%= render 'shared/navigation_bar' %>
-
     <div class='container'>
-      <div id="messages" class="">
-        <% flash.each_with_index do |(k,v),i| %>
-          <% next if k.to_s == 'timedout' %>
-          <div id="message-<%= i %>" class="actual-message">
-            <div class="alert <%= bootstrap_class_for(k.to_s.sub('_stay', '')) %>">
-              <% if v.is_a?(Array) %>
-                <ul>
-                  <% v.each do |vv| %>
-                    <li><%= vv %></li>
-                  <% end %>
-                </ul>
-              <% else %>
-                <%= raw v %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+      <%= render 'shared/flash_messages' %>
       <%= yield %>
     </div>
   </body>
-
   <%= javascript_include_tag 'ratyrate', 'data-turbolinks-track' => true %>
 </html>

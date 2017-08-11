@@ -11,7 +11,14 @@ class UsersController < ApplicationController
   end
 
   def profile
-    @user = User.find(params[:user_id])
+    if user_signed_in?
+      @user = User.find(params[:user_id])
+    else
+      respond_to do |format|
+        format.html { redirect_to root_path, alert: 'You need to Sign in before continuing.' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   def destroy

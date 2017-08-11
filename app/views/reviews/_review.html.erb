@@ -9,10 +9,21 @@
   </div>
 
   <div class='panel-body' id='review_id_<%= review.id %>'>
-    <%= review.content %>
+      <% if review.content.length > 50 %>
+        <%= truncate(review.content, length: 30) %>
+        <%= link_to '...Read more', '', class: "read-more-#{review.id}" %>
+          <script>
+            $('.read-more-<%= review.id %>').on('click', function(e) {
+              e.preventDefault()
+              $(this).parent().html('<%= escape_javascript review.content %>')
+            })
+          </script>
+      <% else %>
+        <p> <%= review.content %> </p>
+      <% end %>
     <div class='report-container'>
       </br>
-      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), id: 'remove', method: :post unless review.owner?(current_user) if user_signed_in? %>
+      <%= link_to 'Report', reports_path(curr_movie: @movie, curr_review_id: review), id: 'remove', method: :post unless review.owner?(current_user) if user_signed_in? && !current_user.admin  %>
     </div>
   </div>
 </div>
