@@ -10,17 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+<!--
   <div class="field" >
     <%= f.label :title%><br>
     <%= f.text_field :title%>
   </div>
 
-  <div class="field">
-    <%= f.label :plot %><br>
-    <%= f.cktext_area :plot, width: 100 %>
-  </div>
-
+ -->  <!--
   <div class="field">
     <%= f.label :year %><br>
     <%= f.text_field :year %>
@@ -41,29 +37,38 @@
     <%= f.text_field :url %>
   </div>
 
-  <div class="checkbox-inline">
-    <%= f.check_box :featured, class: "checkbox checkbox-primary" %>
-    <label>Featured</label>
-  </div>
+ -->
 
   <%= f.fields_for :posters do |p| %>
     <%= p.label :image %>
     <%= p.file_field :file %>
     <br/>
-    <%= p.link_to_remove "Remove Poster" %>
+    <%= p.link_to_remove "Remove Photo" %>
     <%= image_tag p.object.file("thumb") if p.object.file? %>
 
   <%end %>
   </br>
-  <p><%= f.link_to_add "Add Poster", :posters, class: "btn btn-default btn-file" %></p>
+  <p><%= f.link_to_add "Add Photo", :posters, class: "btn btn-default btn-file" %></p>
 
+  <div class="field">
+    <!-- <%= f.label :plot %><br> -->
+    <%= f.cktext_area :plot, width: 100 %>
+  </div>
+
+  <div class="checkbox-inline">
+    <%= f.check_box :featured, class: "checkbox checkbox-primary" %>
+    <label>Make Public</label>
+  </div>
+  </br>
+<!--
   <%= f.fields_for :appearances do |appearance| %>
     <%= appearance.collection_select :actor_id, Actor.all, :id, :name, prompt: true %>
     <br/><%= appearance.link_to_remove "Remove Actor" %>
   <%end %>
 
   <p><%= f.link_to_add "Add Actor", :appearances, class: "btn btn-default btn-file" %></p>
-    <div class="actions">
-    <%= f.submit class: 'btn btn-primary' %>
+    -->
+  <div class="actions">
+    <%= f.submit "Post", class: 'btn btn-primary' %>
   </div>
 <%end%>

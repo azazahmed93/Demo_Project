@@ -10,6 +10,10 @@ class Ability
       can [:read, :destroy], Review
       can :manage, User
       can :manage, Report
+    elsif user.confirmed_at.present?
+      can :manage, Movie
+      can :manage, Actor
+      can :manage, Report
     else
       can :read, :all
     end

@@ -3,7 +3,9 @@ class MoviesController < ApplicationController
   before_filter :permit_movie, only: [:new , :edit ,:create ,:destroy, :update]
 
   def index
-    @movies = Movie.includes(:posters).fetch_movies(params).page(params[:page])
+    @following_ids = current_user.following.pluck(:id)
+    @movies = Movie.where(user_id: @following_ids).page(params[:page])
+    @allmovies = Movie.includes(:posters).fetch_movies(params)
   end
 
   def home
@@ -24,10 +26,10 @@ class MoviesController < ApplicationController
 
   def create
     @movie = Movie.new(movie_params)
-
+    @movie.User_id = current_user.id
     respond_to do |format|
       if @movie.save
-        format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
+        format.html { redirect_to @movie, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { render :new }
@@ -39,7 +41,7 @@ class MoviesController < ApplicationController
   def update
     respond_to do |format|
       if @movie.update(movie_params)
-        format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
+        format.html { redirect_to @movie, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @movie }
       else
         format.html { render :edit }
@@ -51,7 +53,7 @@ class MoviesController < ApplicationController
   def destroy
     @movie.destroy
     respond_to do |format|
-      format.html { redirect_to movies_path, notice: 'Movie was successfully destroyed.' }
+      format.html { redirect_to movies_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -61,7 +63,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:curr_movie_id])
     respond_to do |format|
       if @favorite.save
-        format.html { redirect_to @movie, notice: 'Movie was Added to favorites.' }
+        format.html { redirect_to @movie, notice: 'Post saved to favorites.' }
         format.json { render :show, status: :created, location: @movie }
       else
         format.html { redirect_to @movie, alert: 'Already exists in your favorites.' }
@@ -83,7 +85,8 @@ class MoviesController < ApplicationController
   end
 
   def search
-    @movies = Movie.search(params[:search]).page(params[:page])
+    @movies =   Movie.where('plot LIKE ?',"%#{params[:search]}%").page(params[:page])
+    # @movies = Movie.search(params[:search]).page(params[:page])
   end
 
   private

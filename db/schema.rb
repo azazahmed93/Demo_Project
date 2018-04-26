@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170803084609) do
+ActiveRecord::Schema.define(version: 20180224113625) do
 
   create_table "actors", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 20170803084609) do
   add_index "favorites", ["movie_id"], name: "index_favorites_on_movie_id", using: :btree
   add_index "favorites", ["user_id"], name: "index_favorites_on_user_id", using: :btree
 
+  create_table "follow_relations", force: :cascade do |t|
+    t.integer  "follower_id",  limit: 4
+    t.integer  "following_id", limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "follow_relations", ["follower_id"], name: "index_follow_relations_on_follower_id", using: :btree
+  add_index "follow_relations", ["following_id"], name: "index_follow_relations_on_following_id", using: :btree
+
   create_table "movies", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.text     "plot",       limit: 65535
@@ -92,7 +102,10 @@ ActiveRecord::Schema.define(version: 20170803084609) do
     t.datetime "updated_at",                              null: false
     t.boolean  "featured",   limit: 1
     t.boolean  "delta",      limit: 1,     default: true, null: false
+    t.integer  "User_id",    limit: 4
   end
+
+  add_index "movies", ["User_id"], name: "index_movies_on_User_id", using: :btree
 
   create_table "overall_averages", force: :cascade do |t|
     t.integer  "rateable_id",   limit: 4
@@ -138,6 +151,17 @@ ActiveRecord::Schema.define(version: 20170803084609) do
   end
 
   add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer  "follower_id", limit: 4
+    t.integer  "followed_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
+  add_index "relationships", ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
 
   create_table "reports", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -185,6 +209,8 @@ ActiveRecord::Schema.define(version: 20170803084609) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email",      limit: 255
     t.string   "auth_token",             limit: 255
+    t.string   "designation",            limit: 255
+    t.string   "name",                   limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

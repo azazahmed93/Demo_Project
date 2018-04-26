@@ -1,4 +1,14 @@
-<div class='panel panel-default'>
+<% tag_list = @movie.plot.gsub(/#(\w+)/).to_a.map {|e| e.gsub(/#/, '').downcase} %>
+<% follow_users = review.user.following.where('lower(designation) IN (?)', tag_list).pluck(:email)  %>
+<%if @movie.plot and review.user.designation and @movie.plot.downcase.include?(review.user.designation.downcase) %>
+    <% class_name='panel-success'%>
+    <%elsif follow_users.count > 0 %>
+    <% class_name='panel-primary'%>
+    <%else%>
+    <% class_name='panel-default'%>
+    <%end%>
+
+<div class='panel <%=class_name%>'>
   <div class='panel-heading'>
     <strong><%= link_to review.user.email, users_profile_path(user_id: review.user.id), id: 'remove' %></strong> <span class='text-muted'><%= time_ago_in_words(review.created_at) %></span>
 
@@ -8,7 +18,9 @@
     </span>
   </div>
 
-  <div class='panel-body' id='review_id_<%= review.id %>'>
+
+  <div class='panel-body ' id='review_id_<%= review.id %>'>
+
       <% if review.content.length > 50 %>
         <%= truncate(review.content, length: 30) %>
         <%= link_to '...Read more', '', class: "read-more-#{review.id}" %>

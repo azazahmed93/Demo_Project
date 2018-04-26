@@ -1,46 +1,103 @@
-<div class="container target">
-  <div class="row">
-      <div class="col-sm-10">
-        <h1 class=""><%= @user.email %></h1>
-        <br>
-      </div>
-    <div class="col-sm-2"><a href="#"><img title="profile image" class="img-circle img-responsive" src="<%= @user.avatar("thumb") %>"></a></div>
-  </div>
-  <br>
-</div>
-<br>
+<% if current_user.id != @user.id %>
+    <% if current_user.following.exists?(@user.id) %>
+        <a class="btn btn-danger" href="<%= users_remove_follower_path(other_user_id: @user.id) %>">Unfollow</a>
+    <% else %>
+        <a class="btn btn-primary" href="<%= users_add_follower_path(other_user_id: @user.id) %>">Follow</a>
+    <% end %>
+<% end %>
 
-<div class="col-sm-3" style="margin-top: 8.5%">
-  <ul class="list-group">
-    <li class="list-group-item text-muted" contenteditable="false">Profile</li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span><%= time_ago_in_words(@user.created_at) %>-ago</li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
-  </ul>
-  <div class="panel panel-info">
-    <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
-  </div>
-</div>
+<div class="col-lg-12 col-sm-6">
+    <div class="card hovercard">
+        <div class="card-background">
+            <img class="card-bkimg" alt="" src="http://lorempixel.com/100/100/people/9/">
+            <!-- http://lorempixel.com/850/280/people/9/ -->
+        </div>
+        <div class="useravatar">
+            <img alt="" src="<%= @user.avatar("thumb") %>">
+        </div>
+        <div class="card-info"> <span class="card-title"><%= @user.name %></span>
 
-<div class="panel panel-info target" class="col-md-2">
+        </div>
+    </div>
+    <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+            <button type="button" id="stars" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                <div class="hidden-xs">Posts</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="following" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <div class="hidden-xs">Following</div>
+            </button>
+        </div>
+         <div class="btn-group" role="group">
+            <button type="button" id="following" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                <div class="hidden-xs">Followers</div>
+            </button>
+        </div>
+        <div class="btn-group" role="group">
+            <button type="button" id="favorites" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+                <div class="hidden-xs">Favorites</div>
+            </button>
+        </div>
+    </div>
 
-  <% if !@user.admin %>
-   <div class="panel-heading" contenteditable="false"><h2>Favorite Movies</h2></div>
-  <% end %>
-
-  <div class="panel-body">
-    <div class="row">
-      <div class="panel-body">
-        <% @user.favorites.each do |favorite| %>
-          <div class="col-sm-6 col-md-3">
-            <div class="thumbnail">
-              <% if @user == current_user %>
-                <%= link_to '', unfavorite_movies_path(fav_movie: favorite.movie_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove rem', id: 'remove' %>
-              <% end %>
-              <a href="<%= movie_path(favorite.movie) %>"> <%= image_tag favorite.movie.posters.first.file("medium") %> </a>
+    <div class="well">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="tab1">
+          <h3></h3>
+            <% @movies.each do |m| %>
+            <div style="width: 450px; margin:auto" class="owl-carousel owl-theme">
+                <% m.posters.each do |p| %>
+                    <div class="img-thumbnail">
+                        <a href="<%= movie_path(m) %>"><%= image_tag p.file("medium"), class: 'feed-img' %></a>
+                    </div>
+                <% end %>
+              </div>
+            <% end %>
+        </div>
+        <div class="tab-pane fade in" id="tab2">
+          <h3>Saved Posts</h3>
+          <div class="panel-body">
+            <div class="row">
+              <div class="panel-body">
+                <% @user.favorites.each do |favorite| %>
+                  <div class="col-sm-6 col-md-3">
+                    <div class="thumbnail">
+                      <% if @user == current_user %>
+                        <%= link_to '', unfavorite_movies_path(fav_movie: favorite.movie_id), method: :delete, data: { confirm: 'Are you sure?' }, class: 'glyphicon glyphicon-remove rem', id: 'remove' %>
+                      <% end %>
+                      <a href="<%= movie_path(favorite.movie) %>"> <%= image_tag favorite.movie.posters.first.file("medium") %> </a>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
-        <% end %>
+        </div>
+        <div class="tab-pane fade in" id="tab3">
+          <h3>Following</h3><br>
+          <% @user.following.each do |following| %>
+            <%= link_to following.email, users_profile_path(user_id: following.id) %><br>
+          <% end %>
+        </div>
+        <div class="tab-pane fade in" id="tab4">
+          <h3>Followers</h3><br>
+          <% @user.followers.each do |follower| %>
+            <%= link_to follower.email, users_profile_path(user_id: follower.id) %><br>
+          <% end %>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+
+    </div>
+
+
+<script type="text/javascript">
+ $('.owl-carousel').owlCarousel({
+  margin:10,
+  loop:true,
+  autoWidth:true,
+  items:1
+});
+</script>

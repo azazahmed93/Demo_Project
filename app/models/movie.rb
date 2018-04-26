@@ -5,8 +5,8 @@ class Movie < ActiveRecord::Base
   has_many :actors, through: :appearances
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
-
-  validates :title, :plot, :genre, :year, :posters, :appearances, presence: true
+  belongs_to :user, class_name: 'User', foreign_key: :user_id
+  validates :posters, presence: true
 
   accepts_nested_attributes_for :posters, allow_destroy: true
   accepts_nested_attributes_for :appearances, allow_destroy: true

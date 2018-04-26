@@ -4,6 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+
+  get 'users/add_follower'
+  get 'users/remove_follower'
+
   namespace 'api' do
     devise_for :users
     resources :movies, only: [:index, :show, :search] do

@@ -1,76 +1,79 @@
-<div class="col-sm-6 col-md-3">
+<div class="post">
 
-  <div class="owl-carousel owl-theme">
+  <div class="header">
+    <span class="prf-pic">
+      <% if @movie.User_id%>
+      <img src="<%=User.find(@movie.User_id).avatar%>">
+      <%end%>
+    </span>
+    <% if @movie.User_id %>
+      <span class="account-name"><%= link_to User.find(@movie.User_id).name, users_profile_path(user_id: @movie.User_id) %></span>
+    <% end %>
+    <span class="timestamp">
+      <%= @movie.created_at%>
+    </span>
+  </div>
+  <div style="width: 450px; margin:auto" class="owl-carousel owl-theme">
     <% @movie.posters.each do |p| %>
-      <div class="img-thumbnail">
-        <%= image_tag p.file("medium") %>
-      </div>
+    <div class="img-thumbnail">
+      <%= image_tag p.file("medium"), class: 'feed-img' %>
+    </div>
     <% end %>
   </div>
+  <div style="padding:15px" class="   header">
+    <%= raw @movie.plot %>
+  </div>
+  <div class="img-footer">
+    <div class="comments">
+      <div class="comments-content"></div>
+      <div class="comments-field">
+        <span class="heart-pic">
 
-  <h4><%= @movie.title %></h4>
+          <% if user_signed_in? %>
+            <% if current_user.id == @movie.User_id %>
+              <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
+              <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
+              class: "btn btn-primary" %>
+            <% end %>
+            <%= link_to "Like", movies_favoritize_path(curr_movie_id: @movie.id), class: "btn btn-danger", method: :post %>
+            <%= link_to "Comment", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
 
-  <p>
-    <strong>Official Trailer:</strong>
-    <div class="trailer">
-      <iframe width="560" height="349" src=<%= "https://www.youtube.com/embed/#{@movie.youtube_id}" %>></iframe>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </p>
 
-  <div class= "container-fluid">
-    <div class = "row" id = "reviews_style">
-      <div id="reviews">
-        <p>
+  </div>
+
+
+
+</div>
+
+
+
+
+      <div style="width:600px;margin:auto;" id = "reviews_style">
+        <div  id="reviews">
+          <p>
           </br><%= render @reviews %>
         </p>
       </div>
-    </div>
-  </div>
-</div>
 
-<b>Cast: </b>
-<%= raw @actors.collect { |actor| link_to actor.name, actor, id: 'remove' }.join(",") %>
-<p>
-  <strong>Plot:</strong>
-  <%= raw @movie.plot %>
-</p>
-<p>
-  <strong>Year:</strong>
-  <%= @movie.year %>
-</p>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @movie.genre %>
-</p>
-
-<p>
-  <strong>Time:</strong>
-  <%= @movie.time %>
-</p>
-
+<!--
 <% if cannot? :manage, @movie %>
-  <p>
-    <%= rating_for @movie, 'rating' %>
-  </p>
+<p>
+  <%= rating_for @movie, 'rating' %>
+</p>
 <% end %>
 
-<% if user_signed_in? %>
-  <% if can? :manage, @movie %>
-    <%= link_to 'Edit', edit_movie_path, class: "btn btn-primary" %>
-    <%= link_to 'Delete', @movie, method: :delete, data: { confirm: 'Are you sure?' },
-    class: "btn btn-primary" %>
-  <% else %>
-    <%= link_to "Add to Favorties", movies_favoritize_path(curr_movie_id: @movie.id), class: "btn btn-danger", method: :post %>
-    <%= link_to "Write Review", new_movie_review_path(@movie), remote: true, id: "add_review",  class: "btn btn-danger" %>
-  <% end %>
-<% end %>
+ -->
 
 <script type="text/javascript">
  $('.owl-carousel').owlCarousel({
-    margin:10,
-    loop:true,
-    autoWidth:true,
-    items:1
+  margin:10,
+  loop:true,
+  autoWidth:true,
+  items:1
 });
 </script>

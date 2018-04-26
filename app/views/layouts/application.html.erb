@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>PopcornTime</title>
+    <title>Reviewee</title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
@@ -12,6 +12,7 @@
       <%= render 'shared/flash_messages' %>
       <%= yield %>
     </div>
+    <%= render 'shared/footer' %>
   </body>
   <%= javascript_include_tag 'ratyrate', 'data-turbolinks-track' => true %>
 </html>

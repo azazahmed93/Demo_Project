@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def profile
     if user_signed_in?
       @user = User.find(params[:user_id])
+      @movies = Movie.where(User_id: @user.id).order(created_at: :desc)
     else
       respond_to do |format|
         format.html { redirect_to root_path, alert: 'You need to Sign in before continuing.' }
@@ -29,10 +30,21 @@ class UsersController < ApplicationController
     end
   end
 
+  def add_follower
+    u = User.find(params[:other_user_id])
+    current_user.follow u
+    redirect_to :back
+  end
+
+  def remove_follower
+    u = User.find(params[:other_user_id])
+    current_user.unfollow u
+    redirect_to :back
+  end
   private
 
   def user_params
-    params.require(:user).permit(:avatar)
+    params.require(:user).permit(:avatar, :name, :designation)
   end
 
   def set_user

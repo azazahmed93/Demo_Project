@@ -1,5 +1,5 @@
-<% if can? :manage, Movie %>
-  <h1>Movies</h1>
+<% if current_user.admin? %>
+   <h1>Posts</h1>
   <div class='container'>
     <table class='table table-hover'>
       <thead>
@@ -9,32 +9,71 @@
       </thead>
 
       <tbody>
-        <% @movies.each do |movie| %>
+        <% @allmovies.each do |movie| %>
           <tr>
-            <td><%= movie.title %></td>
+            <td>
+            <% if movie.User_id %>
+            <%= User.find(movie.User_id).email %>
+            <% end %>
+            </td>
+
+            <td>
+            <% if movie.User_id %>
+            <%= Movie.where(User_id: movie.User_id).count %>
+            <% end %>
+            </td>
+
             <td>
               <%= link_to '', movie, class: 'glyphicon glyphicon-eye-open' %>
-              <%= link_to '', edit_movie_path(movie), class: 'glyphicon glyphicon-pencil' %>
+              <!-- <%= link_to '', edit_movie_path(movie), class: 'glyphicon glyphicon-pencil' %> -->
               <%= link_to '', movie, class: 'glyphicon glyphicon-trash', method: :delete, data: { confirm: 'Are you sure?' } %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
-    <%= link_to 'New Movie', new_movie_path, class: "btn btn-default" %>
+    <%= link_to 'New Post', new_movie_path, class: "btn btn-default" %>
   </div>
-  <%= paginate @movies %>
   <br>
-
 <% else %>
+  <%= link_to 'New Post', new_movie_path, class: "btn btn-default" %>
+
   <div class="panel-body">
     <% @movies.each do |movie| %>
-      <div class="col-sm-6 col-md-3">
-        <div class="thumbnail">
-          <a href="<%= movie_path(movie) %>"> <%= image_tag movie.posters.first.file("medium") %> </a>
+      <div class="post">
+        <div class="header">
+          <span class="prf-pic">
+            <% if movie.User_id%>
+            <img src="<%=User.find(movie.User_id).avatar%>">
+            <%end%>
+          </span>
+          <span class="account-name"><%= link_to User.find(movie.User_id).name, users_profile_path(user_id: movie.User_id)%></span>
+          <span class="timestamp">
+            <%= movie.created_at%>
+          </span>
         </div>
-      </div>
+        <div style="width: 450px; margin:auto" class="owl-carousel owl-theme">
+          <% movie.posters.each do |p| %>
+          <div class="img-thumbnail">
+            <a href="<%= movie_path(movie) %>"><%= image_tag p.file("medium"), class: 'feed-img' %></a>
+          </div>
+          <% end %>
+        </div>
+        <div style="padding:15px" class="   header">
+          <%= raw movie.plot %>
+        </div>
+      </div><br><br>
     <% end %>
   </div>
-  <%= paginate @movies %>
-<%end%>
+<%= paginate @movies %>
+<% end %>
+
+<script type="text/javascript">
+ $('.owl-carousel').owlCarousel({
+  margin:10,
+  loop:true,
+  autoWidth:true,
+  items:1
+});
+</script>
+
